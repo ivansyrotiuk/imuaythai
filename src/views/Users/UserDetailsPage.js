@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Page from '../../components/Page/Page';
 import PageHeader from '../../components/Page/PageHeader';
 import PageContent from '../../components/Page/PageContent';

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import Spinner from "../../views/Components/Spinners/Spinner";
-import UserRolesTable from "../../views/Components/Tables/UserRolesTable"
-import UserRoleRequestForm from "../../views/Users/UserRoleRequestForm"
-import Page from "../../views/Components/Page"
-import { fetchRoles } from "../../actions/RolesActions";
-import { fetchUserRoles, saveUserRoleRequest, addUserRole, setRequestedRole, cancelAddingUserRole } from "../../actions/UserRolesActions";
-import { connect } from "react-redux";
+import Spinner from '../../views/Components/Spinners/Spinner';
+import UserRoleView from '../../views/Users/UserRolesView';
+import UserRoleRequestForm from '../../views/Users/UserRoleRequestForm';
+import Page from '../../views/Components/Page';
+import { fetchRoles } from '../../actions/RolesActions';
+import { fetchUserRoles, saveUserRoleRequest, addUserRole, cancelAddingUserRole } from '../../actions/UserRolesActions';
+import { connect } from 'react-redux';
 
 class UserRolesPageContainer extends Component {
     constructor(props) {
         super(props);
-
-        this.onSubmit = this.onSubmit.bind(this);
+        this.handleRequestRoleClick = this.handleRequestRoleClick.bind(this);
     }
 
     componentWillMount() {
@@ -22,28 +21,40 @@ class UserRolesPageContainer extends Component {
         }
     }
 
-    onSubmit(values) {
+    handleRequestRoleClick(values) {
         const userRoleRequest = {
             id: 0,
             roleId: values.roleId,
             userId: this.props.match.params.id
-        }
+        };
 
         return this.props.saveUserRoleRequest(userRoleRequest);
     }
 
     render() {
-        const {roles, userRoles, requestedRole, adding} = this.props;
-        const availableRoles = roles.filter(r => userRoles.findIndex(u => u.roleId === r.id) === -1);
-
+        const { roles, userRoles, adding } = this.props;
+        const availableRoles = roles.filter(r => !userRoles.some(u => u.roleId === r.id));
 
         if (adding) {
-            const header = <strong>Add role request</strong>
-            const form = <UserRoleRequestForm roles={ availableRoles } onSubmit={ this.onSubmit } onRoleChange={ this.onRoleChange } onCancel={ this.props.cancelAddingUserRole } />
-            return <Page header={ header } content={ form } />
+            const header = <strong>Add role request</strong>;
+            const form = (
+                <UserRoleRequestForm
+                    roles={availableRoles}
+                    onSubmit={this.handleRequestRoleAgainClick}
+                    onRoleChange={this.onRoleChange}
+                    onCancel={this.props.cancelAddingUserRole}
+                />
+            );
+            return <Page header={header} content={form} />;
         }
 
-        return <UserRolesTable userRoles={ userRoles } addRole={ this.props.addUserRole } requestRoleAgain={ this.onSubmit } />
+        return (
+            <UserRoleView
+                userRoles={userRoles}
+                handleAddUserRoleClick={this.props.addUserRole}
+                handleRequestRoleClick={this.handleRequestRoleClick}
+            />
+        );
     }
 }
 
@@ -53,18 +64,18 @@ const mapStateToProps = (state, ownProps) => {
         userRoles: state.UserRoles.roles,
         requestedRole: state.UserRoles.requestedRole,
         adding: state.UserRoles.adding
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchRoles: () => {
             dispatch(fetchRoles());
         },
-        fetchUserRoles: (userId) => {
+        fetchUserRoles: userId => {
             dispatch(fetchUserRoles(userId));
         },
-        saveUserRoleRequest: (roleRequest) => {
+        saveUserRoleRequest: roleRequest => {
             return dispatch(saveUserRoleRequest(roleRequest));
         },
         addUserRole: () => {
@@ -73,7 +84,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         cancelAddingUserRole: () => {
             dispatch(cancelAddingUserRole());
         }
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRolesPageContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UserRolesPageContainer);
