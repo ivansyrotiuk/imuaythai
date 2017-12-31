@@ -68,7 +68,7 @@ import UserEditWrapperContainer from '../../containers/Users/UserEditWrapperCont
 import UserViewPageContainer from '../../containers/Users/UserViewPageContainer';
 
 import UserRolesPageContainer from '../../containers/Users/UserRolesPageContainer';
-import RoleRequestsPageContainer from '../../containers/Users/RoleRequestsPageContainer';
+import RoleRequestsViewContainer from '../../containers/Users/RoleRequestsViewContainer';
 import ContestsContainer from '../Contest/ContestsContainer';
 import ContestEditContainer from '../Contest/ContestEditContainer';
 import ContestViewContainer from '../Contest/ContestViewContainer';
@@ -162,9 +162,9 @@ class Full extends Component {
                                 <Route path="/institutions/gyms" component={GymsPageContainer} />
                                 <Route path="/users/(create)" component={CreateUserContainer} />
                                 <Route
-                                    path="/users/(role_requests)"
+                                    path="/users/(rolerequests)"
                                     name="RoleRequests"
-                                    component={RoleRequestsPageContainer}
+                                    component={RoleRequestsViewContainer}
                                 />
                                 <Route path="/users/:id/(edit)" name="UserEdit" component={UserEditWrapperContainer} />
                                 <Route path="/users/:id/(roles)" name="UserRoles" component={UserRolesPageContainer} />

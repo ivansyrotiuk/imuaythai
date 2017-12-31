@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Spinner from '../Components/Spinners/Spinner';
-import { saveFighter } from '../../actions/UsersActions';
-import UserRolesTable from '../../components/Users/UserRolesTable';
+
 import { Field, reduxForm } from 'redux-form';
 
 class UserRolesForm extends Component {
     render() {
-        const { handleSubmit, onCancel, onRoleChange, pristine, reset, submitting, roles } = this.props;
+        const { handleSubmit, onCancel, pristine, reset, submitting, roles } = this.props;
 
         const mappedRoles = roles.map((role, i) => (
             <option key={i} value={role.id}>
@@ -21,7 +19,7 @@ class UserRolesForm extends Component {
                         Please select your user type
                     </label>
                     <div className="col-md-9">
-                        <Field name="roleId" className="form-control" component="select" onChange={onRoleChange}>
+                        <Field name="roleId" className="form-control" component="select">
                             <option key={-1} value={null}>
                                 -
                             </option>
