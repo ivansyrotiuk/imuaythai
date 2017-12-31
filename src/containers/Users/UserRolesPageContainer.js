@@ -40,7 +40,7 @@ class UserRolesPageContainer extends Component {
             const form = (
                 <UserRoleRequestForm
                     roles={availableRoles}
-                    onSubmit={this.handleRequestRoleAgainClick}
+                    onSubmit={this.handleRequestRoleClick}
                     onRoleChange={this.onRoleChange}
                     onCancel={this.props.cancelAddingUserRole}
                 />
