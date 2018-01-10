@@ -1,57 +1,25 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
-import Avatar from 'react-avatar';
-import RemoveButton from '../Components/Buttons/RemoveButton';
-import EditButton from '../Components/Buttons/EditButton';
 import AddButton from '../Components/Buttons/AddButton';
-import PreviewButton from '../Components/Buttons/PreviewButton';
-import TablePage from '../Components/TablePage';
-import { Link } from 'react-router-dom';
-import Row from '../../components/Layout/Row';
+import Page from '../../components/Page/Page';
+import PageHeader from '../../components/Page/PageHeader';
+import PageContent from '../../components/Page/PageContent';
+import Right from '../../components/Common/Right';
+import ContestsTable from '../../components/Contest/ContestsTable';
 
-class ContestsPage extends Component {
-    render() {
-        const { contests } = this.props;
-
-        const pageHeader = (
-            <div>
+const ContestsView = props => {
+    return (
+        <Page>
+            <PageHeader>
                 <strong>Contests</strong>
-                <div className="pull-right">
-                    <AddButton click={this.props.addContestClick} />
-                </div>
-            </div>
-        );
+                <Right>
+                    <AddButton click={props.addContestClick} />
+                </Right>
+            </PageHeader>
+            <PageContent>
+                <ContestsTable contests={props.contests} />
+            </PageContent>
+        </Page>
+    );
+};
 
-        const headers = (
-            <tr>
-                <th>No.</th>
-                <th>Contest name</th>
-                <th className="text-center">Action</th>
-            </tr>
-        );
-
-        const mappedContests = contests.map((contest, i) => (
-            <tr key={i}>
-                <td>
-                    <Avatar size={40} name={contest.name} src="http://localhost:3000/img/contest_poster.jpg" />
-                </td>
-                <td>{contest.name}</td>
-                <td>
-                    <Row className="justify-content-between">
-                        <Link to={'/contests/' + contest.id}>
-                            <PreviewButton />
-                        </Link>
-                        <Link to={'/contests/' + contest.id + '/edit'}>
-                            <EditButton />
-                        </Link>
-                        <RemoveButton />
-                    </Row>
-                </td>
-            </tr>
-        ));
-
-        return <TablePage pageHeader={pageHeader} headers={headers} content={mappedContests} />;
-    }
-}
-
-export default ContestsPage;
+export default ContestsView;

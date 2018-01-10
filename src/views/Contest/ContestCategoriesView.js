@@ -1,48 +1,17 @@
 import React from 'react';
-import Page from '../Components/Page';
-import Avatar from 'react-avatar';
-import { Link } from 'react-router-dom';
 
-const renderFighters = fighters => {
-    const mappedFighters = fighters.map((fighter, index) => (
-        <tr key={index}>
-            <td>
-                <Avatar
-                    size={40}
-                    name={fighter.firstname + ' ' + fighter.surname || fighter.email}
-                    src={fighter.photo}
-                />
-            </td>
-            <td className="col-md-6">
-                <div>{fighter.firstname + ' ' + fighter.surname}</div>
-                <div className="small text-muted">{fighter.email}</div>
-            </td>
-            <td>{fighter.gymName}</td>
-            <td>{fighter.countryName}</td>
-        </tr>
-    ));
-    return (
-        <table className="table table-hover mb-0 hidden-sm-down">
-            <thead>
-                <tr className="thead-default">
-                    <th className="col-md-1 text-center">
-                        <i className="fa fa-user-circle-o" aria-hidden="true" />
-                    </th>
-                    <th className="col-md-6">Name</th>
-                    <th className="col-md-3">Gym</th>
-                    <th className="col-md-2">Country</th>
-                </tr>
-            </thead>
-            <tbody>{mappedFighters}</tbody>
-        </table>
-    );
-};
+import { Link } from 'react-router-dom';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+import * as userColumns from '../../components/Users/UserColumns';
+import Page from '../../components/Page/Page';
+import PageHeader from '../../components/Page/PageHeader';
+import PageContent from '../../components/Page/PageContent';
+import Row from '../../components/Layout/Row';
 
 const renderContestCategory = (category, contestId) => {
-    const renderedFighters = renderFighters(category.fighters);
-
     return (
-        <div className="row">
+        <Row key={contestId}>
             <div className="col-md-12">
                 <div className="card card-accent-primary">
                     <div className="card-header">
@@ -51,8 +20,18 @@ const renderContestCategory = (category, contestId) => {
                         </strong>
                     </div>
                     <div className="card-block">
-                        {renderedFighters}
-                        <div>
+                        <ReactTable
+                            data={category.fighters}
+                            columns={[
+                                userColumns.avatarColumn,
+                                userColumns.userNameColumn,
+                                userColumns.gymNameColumn,
+                                userColumns.countryNameColumn
+                            ]}
+                            defaultPageSize={10}
+                            className="-striped -highlight"
+                        />
+                        <Row>
                             <Link
                                 className="btn btn-secondary pull-right"
                                 to={'/contests/' + contestId + '/category/' + category.id + '/draws'}
@@ -65,19 +44,27 @@ const renderContestCategory = (category, contestId) => {
                             >
                                 <i className="fa fa-hand-rock-o" aria-hidden="true" /> Fights
                             </Link>
-                        </div>
+                        </Row>
                     </div>
                 </div>
             </div>
-        </div>
+        </Row>
     );
 };
 
 export const ContestCategoriesView = props => {
-    const header = <strong>Categories</strong>;
-    const content = props.categories.map((category, index) => renderContestCategory(category, props.contestId));
+    const mappedCategories = props.categories.map((category, index) =>
+        renderContestCategory(category, props.contestId)
+    );
 
-    return <Page header={header} content={content} />;
+    return (
+        <Page>
+            <PageHeader>
+                <strong>Categories</strong>
+            </PageHeader>
+            <PageContent>{mappedCategories}</PageContent>
+        </Page>
+    );
 };
 
 export default ContestCategoriesView;
