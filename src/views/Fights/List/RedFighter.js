@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from 'react-avatar';
+import UserAvatar from '../../../components/Users/UserAvatar';
 
 export const RedFighter = props => {
     const { fighter, number, fight } = props;
@@ -7,9 +7,11 @@ export const RedFighter = props => {
         <h4 className="card-title">The winner of previous fight</h4>
     ) : (
         <div>
-            <div className="row justify-content-between">
-                {fight.winnerId === fighter.id && <h5 className="text-danger">The winner</h5>}
-                <h4 className="card-title">{fighter.firstname + ' ' + fighter.surname}</h4>
+            <div className="card-title">
+                <h4 className="card-title">
+                    {fight.winnerId === fighter.id && <span className="text-danger h5">The winner - </span>}
+                    {fighter.firstname + ' ' + fighter.surname}
+                </h4>
             </div>
             <h6 className="card-subtitle mb-2 text-muted">
                 {fighter.gymName || 'No gym'}, {fighter.countryName}
@@ -28,11 +30,9 @@ export const RedFighter = props => {
                     <p className="text-center">Red corner</p>
                 </div>
             </div>
-            <div className="col-md-8 text-right align-self-center">{fighterContent}</div>
-            <div className="col-md-2 align-self-center">
-                <div className="row justify-content-start">
-                    {fighter && <Avatar size={50} name={fighter.firstname + ' ' + fighter.surname} />}
-                </div>
+            <div className="col-md text-right align-self-center">{fighterContent}</div>
+            <div className="col-auto align-self-center">
+                <div className="row justify-content-start">{fighter && <UserAvatar size={75} user={fighter} />}</div>
             </div>
         </div>
     );

@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
     MainJudgeTargetDecorator,
     RegularJudgeTargetDecorator,
     RefereeTargetDecorator,
     TimeKeepperTargetDecorator,
     AcceptedJudgeTargetDecorator
-} from "./JudgeDropTargetDecorator";
-import HTML5Backend from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
-import * as judgeTypes from "../../common/contestJudgeTypes";
-import Page from "../Components/Page";
+} from './JudgeDropTargetDecorator';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+import * as judgeTypes from '../../common/contestJudgeTypes';
+import Page from '../Components/Page';
 export const ContestJudgeManageView = props => {
     const { judgeRequests, tossingup } = props;
 

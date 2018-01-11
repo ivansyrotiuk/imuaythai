@@ -1,12 +1,11 @@
-import moment from "moment";
-import React from "react";
-import Versus from "./Versus";
-import RedFighter from "./RedFighter";
-import BlueFighter from "./BlueFighter";
-import { DropTarget, DragSource } from "react-dnd";
-import { collect, fighterTarget } from "../dnd/FighterDragTarget";
-import dragTypes from "../../../common/dragTypes";
-import { findDOMNode } from "react-dom";
+import moment from 'moment';
+import React from 'react';
+import Versus from './Versus';
+import RedFighter from './RedFighter';
+import BlueFighter from './BlueFighter';
+import { DropTarget, DragSource } from 'react-dnd';
+import dragTypes from '../../../common/dragTypes';
+import { findDOMNode } from 'react-dom';
 
 const listItemSource = {
     beginDrag(props) {
@@ -117,15 +116,18 @@ const FightMoveListItem = props => {
     return connectDragSource(
         connectDropTarget(
             <div className="card" style={style}>
-                <div className="card-body">
+                <div className="card-body p-0">
                     <div className="row">
                         <div className="col-md-5">
                             <RedFighter fight={props.fight} fighter={props.fight.redAthlete} number={props.number} />
                         </div>
                         <div className="col-md-2 align-self-center text-center">
                             <Versus /> Apr. start time:
-                            {" " + moment(props.fight.startDate).format("YYYY-MM-DD HH:mm")} Ring: <strong>{" " + props.fight.ring}</strong>
-                            <i className="fa fa-external-link btn btn-link" aria-hidden="true" onClick={openFight} />
+                            {' ' + moment(props.fight.startDate).format('YYYY-MM-DD HH:mm')} Ring:{' '}
+                            <strong>{' ' + props.fight.ring}</strong>
+                            <button className="btn btn-link" onClick={openFight}>
+                                <i className="fa fa-external-link btn btn-link" aria-hidden="true" />
+                            </button>
                         </div>
                         <div className="col-md-5">
                             <BlueFighter fight={props.fight} fighter={props.fight.blueAthlete} number={props.number} />
@@ -150,4 +152,6 @@ const dragSourceCollect = (connect, monitor) => {
     };
 };
 
-export default DropTarget(dragTypes.FIGHT, listItemTarget, dropTargetCollect)(DragSource(dragTypes.FIGHT, listItemSource, dragSourceCollect)(FightMoveListItem));
+export default DropTarget(dragTypes.FIGHT, listItemTarget, dropTargetCollect)(
+    DragSource(dragTypes.FIGHT, listItemSource, dragSourceCollect)(FightMoveListItem)
+);

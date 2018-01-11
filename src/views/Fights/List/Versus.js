@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export const Versus = (props) => {
+export const Versus = props => {
     return (
-        <div className="text-center" style={ { color: '#5f656b' } }>
-          <h3><strong>VS</strong></h3>
+        <div className="text-center" style={{ color: '#5f656b' }}>
+            <h4>
+                <strong>VS</strong>
+            </h4>
         </div>
-    )
-}
+    );
+};
 
-export default Versus
+export default Versus;

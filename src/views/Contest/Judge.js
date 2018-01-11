@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Avatar from 'react-avatar';
+import UserAvatar from '../../components/Users/UserAvatar';
 import { DragSource } from 'react-dnd';
 import { collect, judgeDragSource } from './JudgeDragSource';
 import dragTypes from '../../common/dragTypes';
@@ -11,7 +11,7 @@ export class Judge extends Component {
         return connectDragSource(
             <div className="row">
                 <div className="col-md-auto">
-                    <Avatar size={50} name={judgeRequest.user.firstname + ' ' + judgeRequest.user.surname} />
+                    <UserAvatar size={50} user={judgeRequest.user} />
                 </div>
                 <div className="col">
                     <div className="h4">{judgeRequest.user.firstname + ' ' + judgeRequest.user.surname}</div>
