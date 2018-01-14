@@ -59,10 +59,10 @@ export default class ContestInfoCard extends Component {
                             </a>
                         </h6>
                     </Row>
-                    <Row>
-                        <SocialNetworksBox {...contest} />
-                    </Row>
-                    <Row>
+
+                    <SocialNetworksBox {...contest} />
+
+                    <Row className="mt-2">
                         <div className="h6">Registration statistic</div>
                     </Row>
                     <Row>

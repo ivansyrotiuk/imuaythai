@@ -18,6 +18,7 @@ const InstitutionViewBox = props => {
                         <Avatar size={170} name={institution.name} src={institution.logo} />
                         <div className="mt-1">
                             <SocialNetworksBox
+                                className="justify-content-center"
                                 facebook={institution.facebook}
                                 twitter={institution.twitter}
                                 instagram={institution.instagram}

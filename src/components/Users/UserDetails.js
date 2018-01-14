@@ -33,6 +33,7 @@ const UserDetails = props => {
                 />
                 <div className="mt-1">
                     <SocialNetworksBox
+                        className="justify-content-center"
                         facebook={user.facebook}
                         twitter={user.twitter}
                         instagram={user.instagram}
