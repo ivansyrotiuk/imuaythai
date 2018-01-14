@@ -1,15 +1,36 @@
-import {host} from "../global";
-import axios from "axios";
-import * as actionTypes from "./actionTypes";
+import { host } from '../global';
+import axios from 'axios';
+import * as actionTypes from './actionTypes';
 
+export function fetchUsers() {
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.FETCH_USERS
+        });
+        axios
+            .get(host + 'api/users')
+            .then(response => {
+                dispatch({
+                    type: actionTypes.FETCH_USERS_FULFILLED,
+                    payload: response.data
+                });
+            })
+            .catch(err => {
+                dispatch({
+                    type: actionTypes.FETCH_USERS_REJECTED,
+                    payload: err
+                });
+            });
+    };
+}
 
 export function fetchFighters() {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_FIGTHERS
         });
         axios
-            .get(host + "api/users/fighters")
+            .get(host + 'api/users/fighters')
             .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_FIGTHERS_FULFILLED,
@@ -26,12 +47,12 @@ export function fetchFighters() {
 }
 
 export function fetchJudges() {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_JUDGES
         });
         axios
-            .get(host + "api/users/judges")
+            .get(host + 'api/users/judges')
             .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_JUDGES_FULFILLED,
@@ -48,12 +69,12 @@ export function fetchJudges() {
 }
 
 export function fetchCoaches() {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_COACHES
         });
         axios
-            .get(host + "api/users/judges")
+            .get(host + 'api/users/judges')
             .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_COACHES_FULFILLED,
@@ -70,12 +91,12 @@ export function fetchCoaches() {
 }
 
 export function fetchDoctors() {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_DOCTORS
         });
         axios
-            .get(host + "api/users/doctors")
+            .get(host + 'api/users/doctors')
             .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_DOCTORS_FULFILLED,
@@ -92,12 +113,12 @@ export function fetchDoctors() {
 }
 
 export function fetchUser(id) {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_USER
         });
         axios
-            .get(host + "api/users/" + id)
+            .get(host + 'api/users/' + id)
             .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_USER_FULFILLED,
@@ -114,19 +135,19 @@ export function fetchUser(id) {
 }
 
 export function saveUser(user) {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.SAVE_USER
         });
         return axios
-            .post(host + "api/users/save", user)
-            .then(function (response) {
+            .post(host + 'api/users/save', user)
+            .then(function(response) {
                 dispatch({
                     type: actionTypes.SAVE_USER_SUCCESS,
                     payload: response.data
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 dispatch({
                     type: actionTypes.SAVE_USER_REJECTED,
                     payload: error
@@ -136,23 +157,23 @@ export function saveUser(user) {
 }
 
 export function createUser(user) {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.SAVE_USER
         });
         return axios
-            .post(host + "api/account/create", user)
-            .then(function (response) {
+            .post(host + 'api/account/create', user)
+            .then(function(response) {
                 dispatch({
                     type: actionTypes.SAVE_USER_SUCCESS,
                     payload: response.data
                 });
                 dispatch({
                     type: actionTypes.SHOW_SUCCESS_MESSAGE,
-                    payload: "User has been created."
-                })
+                    payload: 'User has been created.'
+                });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 dispatch({
                     type: actionTypes.SAVE_USER_REJECTED,
                     payload: error
@@ -167,12 +188,12 @@ export function createUser(user) {
 }
 
 export function deleteUser(id) {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.DELETE_USER
         });
         axios
-            .post(host + "api/users/remove", {
+            .post(host + 'api/users/remove', {
                 Id: id
             })
             .then(response => {
@@ -197,7 +218,7 @@ export const sendUserDocuments = documents => {
         });
 
         axios
-            .post(host + "api/documents/save", documents)
+            .post(host + 'api/documents/save', documents)
             .then(response => {
                 dispatch({
                     type: actionTypes.SEND_DOCUMENTS_SUCCESS,
@@ -214,11 +235,11 @@ export const sendUserDocuments = documents => {
 };
 
 export const getUserDocuments = (type, id) => {
-    let endpoint = "api/documents/";
+    let endpoint = 'api/documents/';
 
-    if (type === "user") endpoint = endpoint + "user/" + id;
-    else if (type === "contest") endpoint = endpoint + "contest/" + id;
-    else if (type === "institution") endpoint = endpoint + "institution/" + id;
+    if (type === 'user') endpoint = endpoint + 'user/' + id;
+    else if (type === 'contest') endpoint = endpoint + 'contest/' + id;
+    else if (type === 'institution') endpoint = endpoint + 'institution/' + id;
     return dispatch => {
         dispatch({
             type: actionTypes.GET_DOCUMENTS

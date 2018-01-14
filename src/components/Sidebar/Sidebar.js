@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import { userIsAdmin, userCanManageRoles, userCanSeeContests } from '../../auth/auth';
 
+import FightersLinkAuth from '../Links/FightersLinkAuth';
+import UsersLinkAuth from '../Links/UsersLinkAuth';
+
 class Sidebar extends Component {
     handleClick(e) {
         e.preventDefault();
@@ -20,11 +23,6 @@ class Sidebar extends Component {
     // }
 
     render() {
-        const FigthersLink = userIsAdmin(() => (
-            <NavLink to="/fighters" className="nav-link" activeClassName="active">
-                <i className="fa fa-user" /> Fighters
-            </NavLink>
-        ));
         const JudgesLink = userIsAdmin(() => (
             <NavLink to="/judges" className="nav-link" activeClassName="active">
                 <i className="fa fa-gavel" /> Judges
@@ -122,7 +120,10 @@ class Sidebar extends Component {
                             </a>
                             <ul className="nav-dropdown-items">
                                 <li className="nav-item">
-                                    <FigthersLink />
+                                    <UsersLinkAuth />
+                                </li>
+                                <li className="nav-item">
+                                    <FightersLinkAuth />
                                 </li>
                                 <li className="nav-item">
                                     <JudgesLink />

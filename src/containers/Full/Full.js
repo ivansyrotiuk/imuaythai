@@ -84,6 +84,7 @@ import FightContainer from '../Fight/FightContainer';
 import UserDocuments from '../Users/UserDocumentContainer';
 import CreateUserContainer from '../Users/CreateUserContainer';
 import WeightAgeCategoryPageContainer from '../Dictionaries/WeightAgeCategoryPageContainer';
+import UsersViewContainer from '../Users/UsersViewContainer';
 
 class Full extends Component {
     render() {
@@ -169,6 +170,7 @@ class Full extends Component {
                                 <Route path="/users/:id/(edit)" name="UserEdit" component={UserEditWrapperContainer} />
                                 <Route path="/users/:id/(roles)" name="UserRoles" component={UserRolesPageContainer} />
                                 <Route path="/users/:id" name="User" component={UserViewPageContainer} />
+                                <Route path="/users/" name="Users" component={UsersViewContainer} />
                                 <Route path="/fighters/" name="Fighters" component={FightersPageContainer} />
                                 <Route path="/judges/" name="Judges" component={JudgesPageContainer} />
                                 <Route path="/coaches/" name="Coaches" component={CoachesPageContainer} />
@@ -254,11 +256,6 @@ class Full extends Component {
                                 />
                                 <Route
                                     path="/dictionaries/categories/"
-                                    name="ContestCategories"
-                                    component={ContestCategoriesPage}
-                                />
-                                <Route
-                                    path="/dictionaries/categories"
                                     name="ContestCategories"
                                     component={ContestCategoriesPage}
                                 />
