@@ -8,7 +8,7 @@ import UserFightsStatistics from '../../components/Users/UserFightsStatistics';
 import CollapsiblePanel from '../../components/Common/CollapsiblePanel';
 import UserName from '../../components/Users/UserName';
 import ActionsBox from '../../components/Page/ActionsBox';
-import ActionsBoxItem from '../../components/Page/ActionsBoxItem';
+import ActionsBoxButton from '../../components/Page/ActionsBoxButton';
 import Icon from '../../components/Common/Icon';
 import Col from '../../components/Layout/Col';
 import Row from '../../components/Layout/Row';
@@ -28,15 +28,15 @@ const UserDetailsPage = props => {
                         </Col>
                         <Col className="col-3">
                             <ActionsBox>
-                                <ActionsBoxItem onClick={handleEditClick}>
+                                <ActionsBoxButton onClick={handleEditClick}>
                                     <Icon name="fa-pencil" /> Edit
-                                </ActionsBoxItem>
-                                <ActionsBoxItem onClick={handleRolesClick}>
+                                </ActionsBoxButton>
+                                <ActionsBoxButton onClick={handleRolesClick}>
                                     <Icon name="fa-users" /> Roles
-                                </ActionsBoxItem>
-                                <ActionsBoxItem onClick={handlePrintClick}>
+                                </ActionsBoxButton>
+                                <ActionsBoxButton onClick={handlePrintClick}>
                                     <Icon name="fa-qrcode" /> Print QR code
-                                </ActionsBoxItem>
+                                </ActionsBoxButton>
                             </ActionsBox>
                         </Col>
                     </Row>

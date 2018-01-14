@@ -17,7 +17,7 @@ class ContestViewPage extends Component {
                 <PageHeader>
                     <strong>Contest</strong>
                     <Right>
-                        <EditButton click={actions.editContestClick} />
+                        <EditButton click={actions.handleEditContestClick} />
                     </Right>
                 </PageHeader>
                 <PageContent>

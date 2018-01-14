@@ -3,7 +3,7 @@ import Avatar from 'react-avatar';
 import InstitutionInfoBox from './InstitutionInfoBox';
 import SocialNetworksBox from '../Social/SocialNetworksBox';
 import ActionsBox from '../Page/ActionsBox';
-import ActionsBoxItem from '../Page/ActionsBoxItem';
+import ActionsBoxButton from '../Page/ActionsBoxButton';
 import Icon from '../Common/Icon';
 import Row from '../Layout/Row';
 import Col from '../Layout/Col';
@@ -32,9 +32,9 @@ const InstitutionViewBox = props => {
             </Col>
             <Col className="col-md-3">
                 <ActionsBox>
-                    <ActionsBoxItem onClick={actions.goToEditPage}>
+                    <ActionsBoxButton onClick={actions.goToEditPage}>
                         <Icon name="fa-pencil" /> Edit
-                    </ActionsBoxItem>
+                    </ActionsBoxButton>
                 </ActionsBox>
             </Col>
         </Row>

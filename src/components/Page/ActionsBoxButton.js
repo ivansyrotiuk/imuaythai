@@ -1,6 +1,6 @@
 import React from 'react';
 import Row from '../Layout/Row';
-const ActionsBoxItem = props => {
+const ActionsBoxButton = props => {
     return (
         <Row>
             <button onClick={props.onClick} className="btn btn-link text-mute">
@@ -10,4 +10,4 @@ const ActionsBoxItem = props => {
     );
 };
 
-export default ActionsBoxItem;
+export default ActionsBoxButton;
