@@ -1,5 +1,5 @@
-import React from "react";
-import moment from "moment";
+import React from 'react';
+import moment from 'moment';
 
 export const FightInfoBox = props => {
     const { fight } = props;
@@ -23,7 +23,7 @@ export const FightInfoBox = props => {
                         <div className="h1 text-muted text-right mb-2">
                             <i className="fa fa-map-marker fa-1x" />
                         </div>
-                        <div className="h4 mb-0">{fight.contest.address + " " + fight.contest.city}</div>
+                        <div className="h4 mb-0">{fight.contest.address + ' ' + fight.contest.city}</div>
                         <small className="text-muted text-uppercase font-weight-bold">Place</small>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ export const FightInfoBox = props => {
                         <div className="h1 text-muted text-right mb-2">
                             <i className="fa fa-calendar" />
                         </div>
-                        <div className="h4 mb-0">{moment(fight.startDate).format("YYYY-MM-DD HH:mm")}</div>
+                        <div className="h4 mb-0">{moment(fight.startDate).format('YYYY-MM-DD HH:mm')}</div>
                         <small className="text-muted text-uppercase font-weight-bold">Fight date</small>
                     </div>
                 </div>

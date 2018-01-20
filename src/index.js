@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -35,7 +35,7 @@ if (persistedState != undefined && persistedState.Account != undefined) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={history}>
+        <HashRouter history={history}>
             <Switch>
                 <Route exact path="/login" name="Login Page" component={Login} />
                 <Route
@@ -53,7 +53,7 @@ ReactDOM.render(
                 <Route path="/home" name="Home" component={FrontPage} />
                 <Route path="/" name="Home" component={userIsNotAuthenticatedRedir(userWithoutRoleRedir(Full))} />
             </Switch>
-        </Router>
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 );
