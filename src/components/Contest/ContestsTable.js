@@ -43,7 +43,7 @@ const ContestsTable = props => {
                             <Link to={'/contests/' + row.value + '/edit'}>
                                 <EditButton />
                             </Link>
-                            <RemoveButton />
+                            <RemoveButton click={() => props.handleRemoveContestClick(row.value)} />
                         </Row>
                     )
                 }

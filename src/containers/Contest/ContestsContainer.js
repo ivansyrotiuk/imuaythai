@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import ContestsPage from '../../views/Contest/ContestsPage'
-import Spinner from '../../views/Components/Spinners/Spinner'
-import { fetchConstests } from '../../actions/ContestActions'
+import { connect } from 'react-redux';
+import ContestsPage from '../../views/Contest/ContestsPage';
+import Spinner from '../../views/Components/Spinners/Spinner';
+import { fetchConstests, removeContest } from '../../actions/ContestActions';
 
 class ContestsContainer extends Component {
     constructor(props) {
@@ -19,12 +19,18 @@ class ContestsContainer extends Component {
     }
 
     render() {
-        const {contests, fetching} = this.props;
+        const { contests, fetching } = this.props;
         if (fetching) {
-            return <Spinner />
+            return <Spinner />;
         }
 
-        return <ContestsPage contests={ contests } addContestClick={ this.addContest } />
+        return (
+            <ContestsPage
+                contests={contests}
+                addContestClick={this.addContest}
+                handleRemoveContestClick={this.props.handleRemoveContestClick}
+            />
+        );
     }
 }
 
@@ -32,15 +38,18 @@ const mapStateToProps = (state, ownProps) => {
     return {
         contests: state.Contest.contests,
         fetching: state.Contest.fetching
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchConstests: () => {
-            dispatch(fetchConstests())
+            dispatch(fetchConstests());
+        },
+        handleRemoveContestClick: id => {
+            dispatch(removeContest(id));
         }
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContestsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ContestsContainer);

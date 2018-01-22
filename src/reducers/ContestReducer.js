@@ -101,6 +101,18 @@ const reducer = (state = reducerInitialState, action) => {
                 ...state,
                 contestSaved: true
             };
+        case actionTypes.REMOVE_CONTEST_SUCCESS:
+            let contests = [...state.contests];
+            let contestIndex = contests.findIndex(contest => contest.id === action.payload);
+
+            if (contestIndex > -1) {
+                contests.splice(contestIndex, 1);
+            }
+
+            return {
+                ...state,
+                contests: contests
+            };
         case actionTypes.RESET_CONTEST:
             return {
                 ...state,

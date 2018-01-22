@@ -16,7 +16,7 @@ const ContestsView = props => {
                 </Right>
             </PageHeader>
             <PageContent>
-                <ContestsTable contests={props.contests} />
+                <ContestsTable contests={props.contests} handleRemoveContestClick={props.handleRemoveContestClick} />
             </PageContent>
         </Page>
     );

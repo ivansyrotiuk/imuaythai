@@ -85,6 +85,29 @@ export const saveContest = contest => {
     };
 };
 
+export const removeContest = id => {
+    return dispatch => {
+        dispatch({
+            type: actionTypes.REMOVE_CONTEST
+        });
+
+        return axios
+            .post(host + 'api/contests/remove', { id: id })
+            .then(response => {
+                dispatch({
+                    type: actionTypes.REMOVE_CONTEST_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(err => {
+                dispatch({
+                    type: actionTypes.REMOVE_CONTEST_REJECTED,
+                    payload: err.response != null ? err.response.data : 'Cannot connect to server'
+                });
+            });
+    };
+};
+
 export const fetchContestCandidates = () => {
     return dispatch => {
         dispatch({
