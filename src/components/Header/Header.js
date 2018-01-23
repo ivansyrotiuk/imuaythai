@@ -29,12 +29,14 @@ class Header extends Component {
     }
 
     render() {
+        const brandStyle = { backgroundImage: '/img/logo.png' };
+
         return (
             <header className="app-header navbar">
                 <NavbarToggler className="d-lg-none" onClick={this.mobileSidebarToggle}>
                     <span className="navbar-toggler-icon" />
                 </NavbarToggler>
-                <NavbarBrand href="#" />
+                <NavbarBrand href="#" style={brandStyle} />
                 <NavbarToggler className="d-md-down-none" onClick={this.sidebarToggle}>
                     <span className="navbar-toggler-icon" />
                 </NavbarToggler>

@@ -1,7 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import * as actionTypes from '../actions/actionTypes';
 
-export default function reduer(state = {
+export default function reduer(
+    state = {
         authToken: '',
         user: null,
         fetching: false,
@@ -16,8 +17,9 @@ export default function reduer(state = {
         error: null,
         loggedUser: null,
         qrcode: ''
-    } , action) {
-
+    },
+    action
+) {
     switch (action.type) {
         case actionTypes.LOGIN_ACCOUNT_REQUEST:
         case actionTypes.REGISTER_ACCOUNT_REQUEST:
@@ -33,7 +35,7 @@ export default function reduer(state = {
                 isConfimed: false,
                 fetched: false,
                 error: null
-            }
+            };
 
         case actionTypes.FETCH_LOGGED_USER_REQUEST:
         case actionTypes.SAVE_LOGGED_USER_REQUEST:
@@ -41,7 +43,7 @@ export default function reduer(state = {
                 ...state,
                 fetchingUser: true,
                 fetchedUser: false
-            }
+            };
 
         case actionTypes.LOGIN_ACCOUNT_REJECTED:
         case actionTypes.REGISTER_ACCOUNT_REJECTED:
@@ -53,7 +55,7 @@ export default function reduer(state = {
                 ...state,
                 fetching: false,
                 error: action.payload
-            }
+            };
 
         case actionTypes.FETCH_LOGGED_USER_REJECTED:
         case actionTypes.SAVE_LOGGED_USER_REJECTED:
@@ -61,7 +63,7 @@ export default function reduer(state = {
                 ...state,
                 fetchingUser: false,
                 error: action.payload
-            }
+            };
 
         case actionTypes.LOGIN_ACCOUNT_SUCCESS:
             return {
@@ -73,35 +75,35 @@ export default function reduer(state = {
                 qrcode: action.payload.qrcode,
                 rememberMe: action.payload.rememberMe,
                 user: jwtDecode(action.payload.authToken)
-            }
+            };
         case actionTypes.REGISTER_ACCOUNT_SUCCESS:
             return {
                 ...state,
                 fetching: false,
                 isRegistered: true,
                 error: null
-            }
+            };
         case actionTypes.CONFIRM_EMAIL_SUCCESS:
             return {
                 ...state,
                 fetching: false,
                 isConfimed: true,
                 error: null
-            }
+            };
         case actionTypes.FORGOT_PASSWORD_SUCCESS:
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
                 error: null
-            }
+            };
         case actionTypes.RESET_PASSWORD_SUCCESS:
             return {
                 ...state,
                 fetching: false,
                 isResseted: true,
                 error: null
-            }
+            };
         case actionTypes.RESET_ERRORS:
             return {
                 ...state,
@@ -110,19 +112,19 @@ export default function reduer(state = {
                 isLoggedIn: false,
                 isResseted: false,
                 isConfimed: false,
-                fetched: false,
-            }
+                fetched: false
+            };
         case actionTypes.FINISH_REGISTRATION_SUCCESS:
             return {
                 ...state,
                 authToken: action.payload,
                 user: jwtDecode(action.payload)
-            }
+            };
         case actionTypes.FINISH_REGISTRATION_REJECTED:
             return {
                 ...state,
-                error: action.payload,
-            }
+                error: action.payload
+            };
         case actionTypes.ACCOUNT_LOGOUT:
             return {
                 ...state,
@@ -130,23 +132,21 @@ export default function reduer(state = {
                 loggedUser: null,
                 user: null,
                 qrcode: ''
-            }
+            };
         case actionTypes.FETCH_LOGGED_USER_SUCCESS:
             return {
                 ...state,
                 loggedUser: action.payload,
                 fetchingUser: false
-            }
+            };
         case actionTypes.SAVE_LOGGED_USER_SUCCESS:
             return {
                 ...state,
                 loggedUser: action.payload,
                 fetchingUser: false,
                 fetchedUser: true
-
-            }
+            };
         default:
             return state;
     }
 }
-;

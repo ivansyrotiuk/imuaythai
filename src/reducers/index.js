@@ -21,10 +21,13 @@ import WeightCategories from './WeightCategoriesReducer';
 import Rounds from './RoundsReducer';
 import Structures from './StructuresReducer';
 import Documents from './DocumentsReducer';
+import Dashboard from './DashboardReducer';
+
 import { reducer as reduxFormReducer } from 'redux-form';
 
 export default combineReducers({
     Account,
+    Dashboard,
     Institutions,
     ContestTypes,
     Users,
