@@ -16,7 +16,7 @@ import {
 } from '../../auth/auth';
 
 import Footer from '../../components/Footer/';
-import Dashboard from '../../views/Dashboard/';
+import DashboardContainer from '../../containers/Dashboard/DashboardContainer';
 import Charts from '../../views/Charts/';
 import Widgets from '../../views/Widgets/';
 import Buttons from '../../views/Components/Buttons/';
@@ -98,7 +98,7 @@ class Full extends Component {
                         <NotificationsBox />
                         <div className="container-fluid">
                             <Switch>
-                                <Route path="/dashboard" name="Dashboard" component={Dashboard} />
+                                <Route path="/dashboard" name="Dashboard" component={DashboardContainer} />
                                 <Route path="/components/buttons" name="Buttons" component={Buttons} />
                                 <Route path="/components/cards" name="Cards" component={Cards} />
                                 <Route path="/components/forms" name="Forms" component={Forms} />
