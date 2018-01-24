@@ -73,13 +73,15 @@ export default function reducer(
                 return {
                     ...state,
                     categories: newCategories,
-                    fetching: false
+                    fetching: false,
+                    category: {}
                 };
             } else {
                 return {
                     ...state,
                     categories: [...state.categories, category],
-                    fetching: false
+                    fetching: false,
+                    category: {}
                 };
             }
         }
