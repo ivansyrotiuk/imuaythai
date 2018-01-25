@@ -2,8 +2,8 @@ import React from 'react';
 import Row from '../../../../components/Layout/Row';
 
 export const PointCell = props => {
-    const red = props.points.redFighterPoints;
-    const blue = props.points.blueFighterPoints;
+    const red = props.points && props.points.redFighterPoints;
+    const blue = props.points && props.points.blueFighterPoints;
     const redPoints = red !== undefined ? red.fighterPoints : '-';
     const bluePoints = blue !== undefined ? blue.fighterPoints : '-';
 

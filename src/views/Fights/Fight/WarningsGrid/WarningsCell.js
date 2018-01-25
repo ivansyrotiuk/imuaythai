@@ -4,11 +4,11 @@ import Col from '../../../../components/Layout/Col';
 import Row from '../../../../components/Layout/Row';
 
 export const WarningsCell = props => {
-    const red = props.points.redFighterPoints;
-    const blue = props.points.blueFighterPoints;
+    const red = props.points && props.points.redFighterPoints;
+    const blue = props.points && props.points.blueFighterPoints;
 
-    const redWarnings = red !== null ? red.warnings : '-';
-    const blueWarnings = blue !== null ? blue.warnings : '-';
+    const redWarnings = !!red ? red.warnings : '-';
+    const blueWarnings = !!blue ? blue.warnings : '-';
 
     const accepted = red && red.accepted ? 'text-primary' : 'text-muted';
 
