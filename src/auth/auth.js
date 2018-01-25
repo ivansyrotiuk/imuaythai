@@ -74,7 +74,7 @@ export const userCanAcceptContestRequest = connectedAuthWrapper({
         state.Account.user.roles.find(
             r =>
                 r == 'Admin' ||
-                r == 'Gym' ||
+                r == 'GymAdmin' ||
                 r == 'NationalFederation' ||
                 r == 'ContinentalFederation' ||
                 r == 'WorldFederation'
@@ -87,7 +87,7 @@ export const userCanAddContestRequest = connectedAuthWrapper({
         state.Account.user.roles.find(
             r =>
                 r == 'Admin' ||
-                r == 'Gym' ||
+                r == 'GymAdmin' ||
                 r == 'NationalFederation' ||
                 r == 'ContinentalFederation' ||
                 r == 'WorldFederation'
@@ -111,7 +111,7 @@ export const userCanSeeContests = connectedAuthWrapper({
         state.Account.user.roles.find(
             r =>
                 r == 'Admin' ||
-                r == 'Gym' ||
+                r == 'GymAdmin' ||
                 r == 'NationalFederation' ||
                 r == 'ContinentalFederation' ||
                 r == 'WorldFederation'
