@@ -1,69 +1,70 @@
+import * as actionTypes from '../actions/types/dictionaries/contestPointsTypes';
 export default function reducer(state = {
-  points: [],
-  fetching: false,
-  fetched: false,
-  error: null
+    points: [],
+    fetching: false,
+    fetched: false,
+    error: null
 }, action) {
 
-  switch (action.type) {
-    case "FETCH_POINTS":
-      {
+    switch (action.type) {
+    case actionTypes.FETCH_POINTS:
+    {
         return {
-          ...state,
-          fetching: true
-        }
-      }
+            ...state,
+            fetching: true
+        };
+    }
 
-    case "FETCH_POINTS_REJECTED":
-      {
+    case actionTypes.FETCH_POINTS_REJECTED:
+    {
         return {
-          ...state,
-          fetching: false,
-          error: action.payload
-        }
-      }
+            ...state,
+            fetching: false,
+            error: action.payload
+        };
+    }
 
-    case "FETCH_POINTS_FULFILLED":
-      {
+    case actionTypes.FETCH_POINTS_FULFILLED:
+    {
         return {
-          ...state,
-          fetching: false,
-          fetched: true,
-          points: action.payload
-        }
-      }
+            ...state,
+            fetching: false,
+            fetched: true,
+            points: action.payload
+        };
+    }
 
-    case "SAVE_POINT":
-      {
-
-        const point = action.payload
-        const newTypes = [...state.points]
-        const pointToUpdate = newTypes.findIndex(t => t.id === point.id)
+    case actionTypes.SAVE_POINT:
+    {
+        const point = action.payload;
+        const newTypes = [...state.points];
+        const pointToUpdate = newTypes.findIndex(t => t.id === point.id);
         if (pointToUpdate > -1) {
-          newTypes[pointToUpdate] = point;
-          return {
-            ...state,
-            points: newTypes
-          }
+            newTypes[pointToUpdate] = point;
+            return {
+                ...state,
+                points: newTypes
+            };
         } else {
-          return {
-            ...state,
-            points: [...state.points, point]
-          }
+            return {
+                ...state,
+                points: [...state.points, point]
+            };
         }
 
-      }
-
-    case "DELETE_POINT":
-      {
+    }
+    case actionTypes.DELETE_POINT_SUCCESS:
         return {
-          ...state,
-          points: state
-            .points
-            .filter(t => t.id !== action.payload)
-        }
-      }
-    
-  }
-  return state
+            ...state,
+            points: state.points.filter(t => t.id !== action.payload)
+        };
+    case actionTypes.DELETE_POINT_REJECTED:
+        return {
+            ...state,
+            points: state.points,
+            error: action.payload
+        };
+    default:
+        return state;
+    }
 }

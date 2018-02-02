@@ -1,38 +1,60 @@
-import { host } from "../../global"
-import axios from "axios";
+import * as actionTypes from '../types/dictionaries/roundsTypes';
+import { SHOW_ERROR } from '../actionTypes';
+import axios from 'axios';
 
 export function fetchRounds() {
     return function(dispatch) {
         dispatch({
-            type: "FETCH_ROUNDS"
+            type: actionTypes.FETCH_ROUNDS
         });
         axios
-            .get(host + "api/dictionaries/rounds/")
+            .get('api/dictionaries/rounds/')
             .then((response) => {
                 dispatch({
-                    type: "FETCH_ROUNDS_FULFILLED",
+                    type: actionTypes.FETCH_ROUNDS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
-                    type: "FETCH_ROUNDS_REJECTED",
+                    type: actionTypes.FETCH_ROUNDS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
-export function saveRound(category) {
+export function saveRound(round) {
     return {
-        type: 'SAVE_ROUND',
-        payload: category
-    }
+        type: actionTypes.SAVE_ROUND,
+        payload: round
+    };
 }
 
 export function deleteRound(id) {
-    return {
-        type: 'DELETE_ROUND',
-        payload: id
-    }
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.DELETE_ROUND,
+            payload: id
+        });
+        return axios.post('api/dictionaries/rounds/remove', {
+            Id: id
+        })
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.DELETE_ROUND_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(function(err) {
+                dispatch({
+                    type: actionTypes.DELETE_ROUND_REJECTED,
+                    payload: err
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }

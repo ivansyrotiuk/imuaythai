@@ -1,24 +1,23 @@
-import { host } from '../../global';
+import * as actionTypes from '../types/dictionaries/weightAgeCategoriesTypes';
+import { SHOW_ERROR } from '../actionTypes';
 import axios from 'axios';
-import * as actionTypes from '../actionTypes';
-import { actions } from 'redux-form';
 
 export function fetchWeightCategories() {
     return function(dispatch) {
         dispatch({
-            type: 'FETCH_WEIGHT_CATEGORIES'
+            type: actionTypes.FETCH_WEIGHT_CATEGORIES
         });
         axios
-            .get(host + 'api/dictionaries/weightcategories/')
+            .get('api/dictionaries/weightcategories/')
             .then(response => {
                 dispatch({
-                    type: 'FETCH_WEIGHT_CATEGORIES_FULFILLED',
+                    type: actionTypes.FETCH_WEIGHT_CATEGORIES_FULFILLED,
                     payload: response.data
                 });
             })
             .catch(err => {
                 dispatch({
-                    type: 'FETCH_WEIGHT_CATEGORIES_REJECTED',
+                    type: actionTypes.FETCH_WEIGHT_CATEGORIES_REJECTED,
                     payload: err
                 });
             });
@@ -44,7 +43,7 @@ export function fetchWeightCategory(id) {
                     payload: err
                 });
                 dispatch({
-                    type: actionTypes.SHOW_ERROR,
+                    type: SHOW_ERROR,
                     payload: err.message
                 });
             });
@@ -70,7 +69,7 @@ export function saveWeightCategory(category) {
                     payload: err
                 });
                 dispatch({
-                    type: actionTypes.SHOW_ERROR,
+                    type: SHOW_ERROR,
                     payload: err.message
                 });
             });
@@ -78,8 +77,29 @@ export function saveWeightCategory(category) {
 }
 
 export function deleteWeightCategory(id) {
-    return {
-        type: 'DELETE_WEIGHT_CATEGORY',
-        payload: id
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.DELETE_WEIGHT_CATEGORY,
+            payload: id
+        });
+        return axios.post('api/dictionaries/weightcategories/remove', {
+            Id: id
+        })
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.DELETE_WEIGHT_CATEGORY_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(function(err) {
+                dispatch({
+                    type: actionTypes.DELETE_WEIGHT_CATEGORY_REJECTED,
+                    payload: err
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
     };
 }

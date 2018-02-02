@@ -1,38 +1,64 @@
-import { host } from "../../global"
-import axios from "axios";
+import * as actionTypes from '../types/dictionaries/fightStructuresTypes';
+import { SHOW_ERROR } from '../actionTypes';
+import axios from 'axios';
 
 export function fetchStructures() {
     return function(dispatch) {
         dispatch({
-            type: "FETCH_STRUCTURES"
+            type: actionTypes.FETCH_STRUCTURES
         });
         axios
-            .get(host + "api/dictionaries/structures/")
+            .get('api/dictionaries/structures/')
             .then((response) => {
                 dispatch({
-                    type: "FETCH_STRUCTURES_FULFILLED",
+                    type: actionTypes.FETCH_STRUCTURES_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
-                    type: "FETCH_STRUCTURES_REJECTED",
+                    type: actionTypes.FETCH_STRUCTURES_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }
 
 export function saveStructure(category) {
     return {
-        type: 'SAVE_STRUCTURE',
+        type: actionTypes.SAVE_STRUCTURE,
         payload: category
-    }
+    };
 }
 
 export function deleteStructure(id) {
-    return {
-        type: 'DELETE_STRUCTURE',
-        payload: id
-    }
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.DELETE_STRUCTURE,
+            payload: id
+        });
+        return axios.post('api/dictionaries/structures/remove', {
+            Id: id
+        })
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.DELETE_STRUCTURE_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(function(err) {
+                dispatch({
+                    type: actionTypes.DELETE_STRUCTURE_REJECTED,
+                    payload: err
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }

@@ -1,38 +1,64 @@
-import {host} from "../../global"
-import axios from "axios";
+import * as actionTypes from '../types/dictionaries/khanLevelTypes';
+import { SHOW_ERROR } from '../actionTypes';
+import axios from 'axios';
 
 export function fetchLevels() {
     return function (dispatch) {
         dispatch({
-            type: "FETCH_LEVELS"
+            type: actionTypes.FETCH_LEVELS
         });
         axios
-            .get(host + "api/dictionaries/levels/")
+            .get('api/dictionaries/levels/')
             .then((response) => {
                 dispatch({
-                    type: "FETCH_LEVELS_FULFILLED",
+                    type: actionTypes.FETCH_LEVELS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
-                    type: "FETCH_LEVELS_REJECTED",
+                    type: actionTypes.FETCH_LEVELS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }
 
 export function saveLevel(type) {
     return {
-        type: 'SAVE_LEVEL',
+        type: actionTypes.SAVE_LEVEL,
         payload: type
-    }
+    };
 }
 
 export function deleteLevel(id) {
-    return {
-        type: 'DELETE_LEVEL',
-        payload: id
-    }
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.DELETE_LEVEL,
+            payload: id
+        });
+        return axios.post('api/dictionaries/levels/remove', {
+            Id: id
+        })
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.DELETE_LEVEL_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(function(err) {
+                dispatch({
+                    type: actionTypes.DELETE_LEVEL_REJECTED,
+                    payload: err
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }

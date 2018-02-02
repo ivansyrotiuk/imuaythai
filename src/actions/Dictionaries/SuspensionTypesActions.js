@@ -1,38 +1,60 @@
-import { host } from "../../global"
-import axios from "axios";
+import * as actionTypes from '../types/dictionaries/suspensionTypes';
+import { SHOW_ERROR } from '../actionTypes';
+import axios from 'axios';
 
 export function fetchTypes() {
     return function(dispatch) {
         dispatch({
-            type: "FETCH_SUSPENSION_TYPES"
+            type: actionTypes.FETCH_SUSPENSION_TYPES
         });
         axios
-            .get(host + "api/dictionaries/suspensions/")
+            .get('api/dictionaries/suspensions/')
             .then((response) => {
                 dispatch({
-                    type: "FETCH_SUSPENSION_TYPES_FULFILLED",
+                    type: actionTypes.FETCH_SUSPENSION_TYPES_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
-                    type: "FETCH_SUSPENSION_TYPES_REJECTED",
+                    type: actionTypes.FETCH_SUSPENSION_TYPES_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
 export function saveType(type) {
     return {
-        type: 'SAVE_SUSPENSION_TYPE',
+        type: actionTypes.SAVE_SUSPENSION_TYPE,
         payload: type
-    }
+    };
 }
 
 export function deleteType(id) {
-    return {
-        type: 'DELETE_SUSPENSION_TYPE',
-        payload: id
-    }
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.DELETE_SUSPENSION_TYPE,
+            payload: id
+        });
+        return axios.post('api/dictionaries/suspensions/remove', {
+            Id: id
+        })
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.DELETE_SUSPENSION_TYPE_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(function(err) {
+                dispatch({
+                    type: actionTypes.DELETE_SUSPENSION_TYPE_REJECTED,
+                    payload: err
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }

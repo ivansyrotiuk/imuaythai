@@ -1,38 +1,64 @@
-import { host } from "../../global"
-import axios from "axios";
+import * as actionTypes from '../types/dictionaries/contestPointsTypes';
+import { SHOW_ERROR } from '../actionTypes';
+import axios from 'axios';
 
 export function fetchPoints() {
     return function(dispatch) {
         dispatch({
-            type: "FETCH_POINTS"
+            type: actionTypes.FETCH_POINTS
         });
         axios
-            .get(host + "api/dictionaries/points/")
+            .get('api/dictionaries/points/')
             .then((response) => {
                 dispatch({
-                    type: "FETCH_POINTS_FULFILLED",
+                    type: actionTypes.FETCH_POINTS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
-                    type: "FETCH_POINTS_REJECTED",
+                    type: actionTypes.FETCH_POINTS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }
 
-export function savePoint(point) {
-    return {
-        type: 'SAVE_POINT',
-        payload: point
-    }
+export function savePoint(point) { 
+    return { 
+        type: 'SAVE_POINT', 
+        payload: point 
+    };
 }
 
 export function deletePoint(id) {
-    return {
-        type: 'DELETE_POINT',
-        payload: id
-    }
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.DELETE_POINT,
+            payload: id
+        });
+        return axios.post('api/dictionaries/points/remove', {
+            Id: id
+        })
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.DELETE_POINT_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch(function(err) {
+                dispatch({
+                    type: actionTypes.DELETE_POINT_REJECTED,
+                    payload: err
+                });
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
 }
