@@ -1,21 +1,21 @@
 import React from 'react';
 import DetailedVersus from './DetailedVersus';
-import FighterVersusBox from './FighterVersusBox';
+import BlueFighterVersusBox from '../../../components/Fights/Fighter/BlueFighterVersusBox';
+import RedFighterVersusBox from '../../../components/Fights/Fighter/RedFighterVersusBox';
 
 export const FightersBox = props => {
     const { fight } = props;
-    const redWon = fight.redAthlete && fight.winnerId === fight.redAthlete.id;
-    const blueWon = fight.blueAthlete && fight.winnerId === fight.blueAthlete.id;
+
     return (
         <div className="row">
             <div className="col-md-5">
-                {<FighterVersusBox fighter={fight.redAthlete} winner={redWon} corner="red" />}
+                {<RedFighterVersusBox fighter={fight.redAthlete} winner={fight.redAthleteWon} />}
             </div>
             <div className="col-md-2 text-center align-self-center">
                 <DetailedVersus />
             </div>
             <div className="col-md-5">
-                {<FighterVersusBox fighter={fight.blueAthlete} winner={blueWon} corner="blue" />}
+                {<BlueFighterVersusBox fighter={fight.blueAthlete} winner={fight.blueAthleteWon} />}
             </div>
         </div>
     );

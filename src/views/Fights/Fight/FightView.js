@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 
-import CornerBox from './CornerBox';
+import CornerBox from '../../../components/Fights/Fighter/CornerBox';
 import Page from '../../Components/Page';
 import PointsGrid from './PointsGrid/PointsGrid';
 import JudgesBox from './JudgesBox';
