@@ -79,6 +79,14 @@ const UserDetails = props => {
                             <div className="col">{user.email}</div>
                         </div>
                     )}
+                    {user.gymName && (
+                        <div className="row">
+                            <div className="col-auto">
+                                <i className="fa fa-flag" aria-hidden="true" />
+                            </div>
+                            <div className="col">{user.gymName}</div>
+                        </div>
+                    )}
                     {user.countryName && (
                         <div className="row">
                             <div className="col-auto">
