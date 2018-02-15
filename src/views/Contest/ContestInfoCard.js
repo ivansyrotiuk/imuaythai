@@ -29,7 +29,7 @@ export default class ContestInfoCard extends Component {
         return (
             <Row>
                 <div className="col-md-2">
-                    <img src="/img/contest_poster.jpg" className="img-thumbnail" />
+                    <img src={contest.logo} className="img-thumbnail" />
                 </div>
                 <div className="col-md-7">
                     <Row>
