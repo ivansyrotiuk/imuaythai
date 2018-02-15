@@ -15,16 +15,9 @@ const ContestsTable = props => {
             columns={[
                 {
                     id: 'avatar',
-                    accessor: 'name',
+                    accessor: contest => contest,
                     maxWidth: 60,
-                    Cell: row => (
-                        <Avatar
-                            size={40}
-                            name={row.value}
-                            src="http://localhost:3000/img/contest_poster.jpg"
-                            round={true}
-                        />
-                    )
+                    Cell: row => <Avatar size={40} name={row.value.name} src={row.value.logo} round={true} />
                 },
                 {
                     Header: 'Name',
