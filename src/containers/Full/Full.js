@@ -47,7 +47,6 @@ import SuspensionTypesPageContainer from '../Dictionaries/SuspensionTypesPageCon
 import KhanLevelsPageContainer from '../Dictionaries/KhanLevelsPageContainer';
 import ContestRangesPageContainer from '../Dictionaries/ContestRangesPageContainer';
 import ContestTypesPageContainer from '../Dictionaries/ContestTypesPageContainer';
-import ContestCategoriesPageContainer from '../Dictionaries/ContestCategoriesPageContainer';
 
 import GymsPageContainer from '../../containers/Institutions/Gyms/GymsPageContainer';
 import NationalFederationsPageContainer from '../../containers/Institutions/NationalFederations/NationalFederationsPageContainer';
