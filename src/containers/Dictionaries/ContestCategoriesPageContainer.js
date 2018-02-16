@@ -5,10 +5,6 @@ import Spinner from '../../views/Components/Spinners/Spinner';
 import { fetchContestCategories, deleteContestCategory } from '../../actions/Dictionaries/ContestCategoriesActions';
 
 class ContestCategoriesPageContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         this.props.fetchContestCategories();
     }
@@ -17,7 +13,7 @@ class ContestCategoriesPageContainer extends Component {
         this.props.history.push('/dictionaries/categories/new');
     }
 
-    handleEditContestCategoryClick(id){
+    handleEditContestCategoryClick(id) {
         this.props.history.push('/dictionaries/categories/' + id);
     }
 
@@ -25,7 +21,7 @@ class ContestCategoriesPageContainer extends Component {
         this.props.removeContestCategory(id);
     }
 
-    get viewActions(){
+    get viewActions() {
         return {
             addClick: this.handleAddContestCategoryClick.bind(this),
             editClick: this.handleEditContestCategoryClick.bind(this),
@@ -38,16 +34,12 @@ class ContestCategoriesPageContainer extends Component {
         if (fetching) {
             return <Spinner />;
         }
-        return (
-            <ContestCategoriesPage
-                categories={categories}
-                actions = {this.viewActions}
-            />
-        );
+
+        return <ContestCategoriesPage categories={categories} actions={this.viewActions} />;
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         categories: state.ContestCategories.categories,
         fetching: state.ContestCategories.fetching,
@@ -55,7 +47,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         fetchContestCategories: () => {
             dispatch(fetchContestCategories());

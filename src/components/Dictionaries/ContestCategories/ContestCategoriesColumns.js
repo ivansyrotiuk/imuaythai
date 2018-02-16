@@ -22,8 +22,8 @@ export const actionsColumnCreator = actions => {
         maxWidth: 170,
         Cell: row => (
             <Row className="justify-content-around">
-            <EditButton click = {() => actions.editClick(row.value)} />
-            <RemoveButton click= {() => actions.deleteClick(row.value)} />
+                <EditButton click={() => actions.editClick(row.value)} />
+                <RemoveButton click={() => actions.deleteClick(row.value)} />
             </Row>
         )
     };

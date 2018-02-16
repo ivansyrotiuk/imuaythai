@@ -38,7 +38,6 @@ import ContestPointsDetailsPage from '../../views/Dictionaries/ContestPoints/Con
 import RoundsDetailsPage from '../../views/Dictionaries/Rounds/RoundsDetailsPage';
 import StructuresDetailsPage from '../../views/Dictionaries/FightStructures/StructuresDetailsPage';
 import ContestCategoriesDetailsPage from '../../views/Dictionaries/ContestCategories/ContestCategoriesDetailsPage';
-
 import ContestCategoriesPageContainer from '../Dictionaries/ContestCategoriesPageContainer';
 import FightStructuresPageContainer from '../Dictionaries/FightStructuresPageContainer';
 import RoundsPageContainer from '../Dictionaries/RoundsPageContainer';
@@ -48,6 +47,7 @@ import SuspensionTypesPageContainer from '../Dictionaries/SuspensionTypesPageCon
 import KhanLevelsPageContainer from '../Dictionaries/KhanLevelsPageContainer';
 import ContestRangesPageContainer from '../Dictionaries/ContestRangesPageContainer';
 import ContestTypesPageContainer from '../Dictionaries/ContestTypesPageContainer';
+import ContestCategoriesPageContainer from '../Dictionaries/ContestCategoriesPageContainer';
 
 import GymsPageContainer from '../../containers/Institutions/Gyms/GymsPageContainer';
 import NationalFederationsPageContainer from '../../containers/Institutions/NationalFederations/NationalFederationsPageContainer';
@@ -186,7 +186,11 @@ class Full extends Component {
                                     name="ContestTypes"
                                     component={ContestTypesDetailsPage}
                                 />
-                                <Route path="/dictionaries/types" name="ContestTypes" component={ContestTypesPageContainer} />
+                                <Route
+                                    path="/dictionaries/types"
+                                    name="ContestTypes"
+                                    component={ContestTypesPageContainer}
+                                />
                                 <Route
                                     path="/dictionaries/ranges/:id"
                                     name="ContestRange"
@@ -202,8 +206,16 @@ class Full extends Component {
                                     name="KhanLevel"
                                     component={KhanLevelsDetailsPage}
                                 />;
-                                <Route path="/dictionaries/levels/" name="KhanLevels" component={KhanLevelsPageContainer} />
-                                <Route path="/dictionaries/levels" name="KhanLevels" component={KhanLevelsPageContainer} />
+                                <Route
+                                    path="/dictionaries/levels/"
+                                    name="KhanLevels"
+                                    component={KhanLevelsPageContainer}
+                                />
+                                <Route
+                                    path="/dictionaries/levels"
+                                    name="KhanLevels"
+                                    component={KhanLevelsPageContainer}
+                                />
                                 <Route
                                     path="/dictionaries/suspensions/:id"
                                     name="SuspensionType"
@@ -239,7 +251,11 @@ class Full extends Component {
                                     name="ContestPoints"
                                     component={ContestPointsPageContainer}
                                 />
-                                <Route path="/dictionaries/points" name="ContestPoints" component={ContestPointsPageContainer} />
+                                <Route
+                                    path="/dictionaries/points"
+                                    name="ContestPoints"
+                                    component={ContestPointsPageContainer}
+                                />
                                 <Route path="/dictionaries/rounds/:id" name="Rounds" component={RoundsDetailsPage} />
                                 <Route path="/dictionaries/rounds/" name="Rounds" component={RoundsPageContainer} />
                                 <Route path="/dictionaries/rounds" name="Rounds" component={RoundsPageContainer} />
@@ -248,8 +264,16 @@ class Full extends Component {
                                     name="Structures"
                                     component={StructuresDetailsPage}
                                 />
-                                <Route path="/dictionaries/structures/" name="Structures" component={FightStructuresPageContainer} />
-                                <Route path="/dictionaries/structures" name="Structures" component={FightStructuresPageContainer} />
+                                <Route
+                                    path="/dictionaries/structures/"
+                                    name="Structures"
+                                    component={FightStructuresPageContainer}
+                                />
+                                <Route
+                                    path="/dictionaries/structures"
+                                    name="Structures"
+                                    component={FightStructuresPageContainer}
+                                />
                                 <Route
                                     path="/dictionaries/categories/:id"
                                     name="ContestCategories"

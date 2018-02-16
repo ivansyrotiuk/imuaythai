@@ -9,13 +9,13 @@ export function fetchContestCategories() {
         });
         axios
             .get('api/dictionaries/categories')
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_CONTEST_CATEGORIES_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_CONTEST_CATEGORIES_REJECTED,
                     payload: err
@@ -33,9 +33,10 @@ export function deleteContestCategory(id) {
             type: actionTypes.DELETE_CONTEST_CATEGORY,
             payload: id
         });
-        return axios.post('api/dictionaries/categories/remove', {
-            Id: id
-        })
+        return axios
+            .post('api/dictionaries/categories/remove', {
+                Id: id
+            })
             .then(function(response) {
                 dispatch({
                     type: actionTypes.DELETE_CONTEST_CATEGORY_SUCCESS,

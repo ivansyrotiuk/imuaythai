@@ -16,7 +16,7 @@ const ContestAgeCategoriesView = props => {
                 </Right>
             </PageHeader>
             <PageContent>
-                <ContestCategoriesTable categories={props.categories}  actions={props.actions}/>
+                <ContestCategoriesTable categories={props.categories} actions={props.actions} />
             </PageContent>
         </Page>
     );
