@@ -1,6 +1,6 @@
-import { host } from "../global"
-import axios from "axios";
-import * as actionTypes from "../actions/actionTypes"
+import { host } from '../global';
+import axios from 'axios';
+import * as actionTypes from '../actions/actionTypes';
 
 export function fetchGyms() {
     return function(dispatch) {
@@ -8,20 +8,20 @@ export function fetchGyms() {
             type: actionTypes.FETCH_GYMS
         });
         axios
-            .get(host + "api/gyms")
+            .get(host + 'api/gyms')
             .then((response) => {
                 dispatch({
                     type: actionTypes.FETCH_GYMS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
                     type: actionTypes.FETCH_GYMS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
 export function fetchCountryGyms(countryId) {
@@ -30,20 +30,20 @@ export function fetchCountryGyms(countryId) {
             type: actionTypes.FETCH_COUNTRY_GYMS
         });
         axios
-            .get(host + "api/gyms/country?id=" + countryId)
+            .get(host + 'api/gyms/country?id=' + countryId)
             .then((response) => {
                 dispatch({
                     type: actionTypes.FETCH_COUNTRY_GYMS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
                     type: actionTypes.FETCH_COUNTRY_GYMS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
 export function fetchNationalFederations() {
@@ -52,20 +52,20 @@ export function fetchNationalFederations() {
             type: actionTypes.FETCH_NATIONAL_FEDERATIONS
         });
         axios
-            .get(host + "api/federations/national")
+            .get(host + 'api/federations/national')
             .then((response) => {
                 dispatch({
                     type: actionTypes.FETCH_NATIONAL_FEDERATIONS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
                     type: actionTypes.FETCH_NATIONAL_FEDERATIONS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
 export function fetchContinentalFederations() {
@@ -74,20 +74,20 @@ export function fetchContinentalFederations() {
             type: actionTypes.FETCH_CONTINENTAL_FEDERATIONS
         });
         axios
-            .get(host + "api/federations/continental")
+            .get(host + 'api/federations/continental')
             .then((response) => {
                 dispatch({
                     type: actionTypes.FETCH_CONTINENTAL_FEDERATIONS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
                     type: actionTypes.FETCH_CONTINENTAL_FEDERATIONS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
 export function fetchWorldFederations() {
@@ -96,20 +96,20 @@ export function fetchWorldFederations() {
             type: actionTypes.FETCH_WORLD_FEDERATIONS
         });
         axios
-            .get(host + "api/federations/world")
+            .get(host + 'api/federations/world')
             .then((response) => {
                 dispatch({
                     type: actionTypes.FETCH_WORLD_FEDERATIONS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((err) => {
                 dispatch({
                     type: actionTypes.FETCH_WORLD_FEDERATIONS_REJECTED,
                     payload: err
-                })
-            })
-    }
+                });
+            });
+    };
 }
 
 export function fetchInstitution(id) {
@@ -118,7 +118,7 @@ export function fetchInstitution(id) {
             type: actionTypes.FETCH_INSTITUTION
         });
         axios
-            .get(host + "api/institutions/" + id)
+            .get(host + 'api/institutions/' + id)
             .then((response) => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_FULFILLED,
@@ -131,7 +131,7 @@ export function fetchInstitution(id) {
                     payload: err
                 });
             });
-    }
+    };
 }
 
 export function addInstitution(institutionType) {
@@ -143,7 +143,7 @@ export function addInstitution(institutionType) {
                 institutionType: institutionType,
             }
         });
-    }
+    };
 }
 
 export function resetInstitution(institutionType) {
@@ -151,7 +151,7 @@ export function resetInstitution(institutionType) {
         dispatch({
             type: actionTypes.RESET_INSTITUTION,
         });
-    }
+    };
 }
 
 export function saveInstitution(institution) {
@@ -173,7 +173,7 @@ export function saveInstitution(institution) {
                     payload: error
                 });
             });
-    }
+    };
 }
 
 export function deleteInstitution(id) {
@@ -181,7 +181,7 @@ export function deleteInstitution(id) {
         dispatch({
             type: actionTypes.DELETE_INSTITUTION,
             payload: id
-        })
+        });
         return axios.post(host + 'api/institutions/remove', {
             Id: id
         })
@@ -197,7 +197,7 @@ export function deleteInstitution(id) {
                     payload: error
                 });
             });
-    }
+    };
 }
 
 export function fetchInstitutionMembers(institutionId) {
@@ -210,13 +210,34 @@ export function fetchInstitutionMembers(institutionId) {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_MEMBERS_FULFILLED,
                     payload: response.data
-                })
+                });
             })
             .catch((error)=>{
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_MEMBERS_REJECTED,
                     payload: error
-                })
+                });
             });
-    }
+    };
+}
+
+export function fetchInstitutionGyms(institutionId) {
+    return function (dispatch) {
+        dispatch({
+            type: actionTypes.FETCH_INSTITUTION_GYMS
+        });
+        return axios.get('/api/institutions/gyms?institutionId=' + institutionId)
+            .then((response)=>{
+                dispatch({
+                    type: actionTypes.FETCH_INSTITUTION_GYMS_FULFILLED,
+                    payload: response.data
+                });
+            })
+            .catch((error)=>{
+                dispatch({
+                    type: actionTypes.FETCH_INSTITUTION_GYMS_REJECTED,
+                    payload: error
+                });
+            });
+    };
 }

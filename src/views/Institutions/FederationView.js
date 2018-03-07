@@ -6,9 +6,11 @@ import PageContent from "../../components/Page/PageContent";
 import InstitutionViewBox from "../../components/Institutions/InstitutionViewBox";
 import CollapsiblePanel from "../../components/Common/CollapsiblePanel";
 import InstitutionMembersList from "../../components/Institutions/InstitutionMembersList";
+import InstitutionGymsList from "../../components/Institutions/InstitutionGymsList";
+
 
 const FederationView = (props) => {
-    const {federation, actions, members} = props;
+    const {federation, actions, members, gyms} = props;
 
     return (
         <Page>
@@ -21,6 +23,9 @@ const FederationView = (props) => {
                 </CollapsiblePanel>
                 <CollapsiblePanel  trigger="Members" open={false}>
                     <InstitutionMembersList members={members}/>
+                </CollapsiblePanel>
+                <CollapsiblePanel  trigger="Gyms" open={false}>
+                    <InstitutionGymsList gyms={gyms}/>
                 </CollapsiblePanel>
             </PageContent>
         </Page>
