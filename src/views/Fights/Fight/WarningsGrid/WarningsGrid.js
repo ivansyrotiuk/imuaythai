@@ -19,26 +19,26 @@ export const WarningsGrid = props => {
                     {
                         Header: 'Cautions',
                         id: 'round',
-                        accessor: d => d.rounds[index],
-                        Cell: row => <CautionsCell points={row.value} />
+                        accessor: d => d.rounds,
+                        Cell: row => <CautionsCell points={row.value} roundId={index} />
                     },
                     {
                         Header: 'Warnings',
                         id: 'round',
-                        accessor: d => d.rounds[index],
-                        Cell: row => <WarningsCell points={row.value} />
+                        accessor: d => d.rounds,
+                        Cell: row => <WarningsCell points={row.value} roundId={index} />
                     },
                     {
                         Header: 'Knockdowns',
                         id: 'round',
-                        accessor: d => d.rounds[index],
-                        Cell: row => <KnockdownsCell points={row.value} />
+                        accessor: d => d.rounds,
+                        Cell: row => <KnockdownsCell points={row.value} roundId={index} />
                     },
                     {
                         Header: 'Injury',
                         id: 'round',
-                        accessor: d => d.rounds[index],
-                        Cell: row => <InjuryCell points={row.value} />
+                        accessor: d => d.rounds,
+                        Cell: row => <InjuryCell points={row.value} roundId={index} />
                     }
                 ]
             };

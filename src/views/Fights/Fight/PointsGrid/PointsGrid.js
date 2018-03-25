@@ -10,10 +10,12 @@ export const PointsGrid = props => {
         .fill()
         .map((e, index) => {
             return {
-                Header: 'Round ' + index + 1,
+                Header: 'Round ' + (index + 1),
                 id: 'round',
-                accessor: d => d.rounds[index],
-                Cell: row => <PointCell points={row.value} />
+                accessor: 'rounds',
+                Cell: row => {
+                    return <PointCell points={row.value} roundId={index} />;
+                }
             };
         });
 
