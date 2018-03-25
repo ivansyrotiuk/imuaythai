@@ -2,10 +2,11 @@ import React from 'react';
 import Row from '../../../../components/Layout/Row';
 
 export const PointCell = props => {
-    const red = props.points && props.points.redFighterPoints;
-    const blue = props.points && props.points.blueFighterPoints;
-    const redPoints = red !== undefined ? red.fighterPoints : '-';
-    const bluePoints = blue !== undefined ? blue.fighterPoints : '-';
+    const points = props.points && props.points[props.roundId];
+    const red = points && points.redFighterPoints;
+    const blue = points && points.blueFighterPoints;
+    const redPoints = !red ? '-' : red.fighterPoints;
+    const bluePoints = !blue ? '-' : blue.fighterPoints;
 
     const redAccepted = red && red.accepted ? 'text-primary' : 'text-muted';
     const blueAccepted = blue && blue.accepted ? 'text-primary' : 'text-muted';
