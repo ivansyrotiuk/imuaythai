@@ -31,15 +31,15 @@ const renderContestCategory = (category, contestId) => {
                             defaultPageSize={10}
                             className="-striped -highlight"
                         />
-                        <Row>
+                        <Row className="justify-content-end p-2">
                             <Link
-                                className="btn btn-secondary pull-right"
+                                className="btn btn-secondary"
                                 to={'/contests/' + contestId + '/category/' + category.id + '/draws'}
                             >
                                 <i className="fa fa-sitemap" aria-hidden="true" /> Draws
                             </Link>
                             <Link
-                                className="btn btn-secondary pull-right"
+                                className="btn btn-secondary"
                                 to={'/contests/' + contestId + '/category/' + category.id + '/fights'}
                             >
                                 <i className="fa fa-hand-rock-o" aria-hidden="true" /> Fights

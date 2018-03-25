@@ -20,6 +20,7 @@ class UserViewPageContainer extends Component {
 
     handlePrintClick() {
         alert('Feature is disabled.');
+        return;
         var content = document.getElementById('divcontents');
         var pri = document.getElementById('9p;p;0;p/').contentWindow;
         pri.document.open();
