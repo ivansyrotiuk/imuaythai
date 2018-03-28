@@ -10,50 +10,50 @@ const mockStore = configureStore();
 const createMockStore = state => {
     const store = mockStore(state);
     return store;
-}
-
-const createDefaultComponent = state => {
-  const store = createMockStore(state);
-  const wrapper = shallow(<UserDocumentContainer store={store} />);
-
-  return wrapper;
 };
 
-const createDefaultRenderedComponent = state =>{
+const createDefaultComponent = state => {
+    const store = createMockStore(state);
+    const wrapper = shallow(<UserDocumentContainer store={store} />);
+
+    return wrapper;
+};
+
+const createDefaultRenderedComponent = state => {
     const store = createMockStore(state);
     const wrapper = render(<UserDocumentContainer store={store} />);
 
     return wrapper;
-}
+};
 
 describe('<UserDocumentContainer>', () => {
-  it('should render', () => {
-    const initialState = {
-      Documents: {
-        documents: [],
-      },
-    };
+    it('should render', () => {
+        const initialState = {
+            Documents: {
+                documents: []
+            }
+        };
 
-    const component = createDefaultRenderedComponent(initialState);
+        const component = createDefaultRenderedComponent(initialState);
 
-    expect(component).toBeTruthy();
-  });
+        expect(component).toBeTruthy();
+    });
 
-  it('should get document list', () => {
-    const initialState = {
-      Documents: {
-        documents: [
-          {
-            key: 'test.docx',
-            modified: 123,
-            size: 1.5 * 1024 * 1024,
-          },
-        ],
-      },
-    };
+    it('should get document list', () => {
+        const initialState = {
+            Documents: {
+                documents: [
+                    {
+                        key: 'test.docx',
+                        modified: 123,
+                        size: 1.5 * 1024 * 1024
+                    }
+                ]
+            }
+        };
 
-    const component = createDefaultComponent(initialState);
+        const component = createDefaultComponent(initialState);
 
-    expect(component.props().documents).toEqual(initialState.Documents.documents);
-  });
+        expect(component.props().documents).toEqual(initialState.Documents.documents);
+    });
 });
