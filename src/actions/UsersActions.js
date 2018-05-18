@@ -74,7 +74,7 @@ export function fetchCoaches() {
             type: actionTypes.FETCH_COACHES
         });
         axios
-            .get(host + 'api/users/judges')
+            .get(host + 'api/users/coaches')
             .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_COACHES_FULFILLED,
