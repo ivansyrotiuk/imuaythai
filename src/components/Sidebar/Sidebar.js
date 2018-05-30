@@ -35,6 +35,11 @@ class Sidebar extends Component {
             <NavLink to="/doctors" className="nav-link" activeClassName="active">
                 <i className="fa fa-user-md" /> Doctors
             </NavLink>;
+        
+        const FightersLink =
+            <NavLink to="/fighters" className="nav-link" activeClassName="active">
+                <i className="fa fa-user-md" /> Doctors
+            </NavLink>;
 
         const GymsLink =
             <NavLink to="/institutions/gyms" className="nav-link" activeClassName="active">
@@ -194,6 +199,9 @@ class Sidebar extends Component {
                                 </li>
                                 <li className="nav-item">
                                     {DoctorsLink}
+                                </li>
+                                <li className="nav-item">
+                                    {FightersLink}
                                 </li>
                                 <li className="nav-item">
                                     {UserRoleRequestLink}
