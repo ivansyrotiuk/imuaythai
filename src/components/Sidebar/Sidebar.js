@@ -38,7 +38,7 @@ class Sidebar extends Component {
         
         const FightersLink =
             <NavLink to="/fighters" className="nav-link" activeClassName="active">
-                <i className="fa fa-user-md" /> Doctors
+                <i className="fa fa-user-md" /> Fighters
             </NavLink>;
 
         const GymsLink =
