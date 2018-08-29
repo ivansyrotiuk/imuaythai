@@ -1,20 +1,17 @@
 language: node_js
 node_js:
-    - "stable"
+    - stable
 branches:
     only:
         - master
 script:
     - npm install
     - npm run build
-deploy:
-    provider: heroku
-    api_key:
-        secure: BmOuvrSySBGwY37WB/f+WOqa+Sfz4qZrvSu6gujEnNEkti3KGSwhvbTA8ElhlnjTFhRImscimDfbNB52F/SWFpGkO48KrSKQSzr2emm0941bzNvE/qL3I/sAmcTLarX5pjxCL5UdgXMtMPAZVm/viSuVH1WWvpcYPh9FMgDYnGrkNNpn91U8S+Nh+zWcyYYRWNEjISDds6zcvX/cgVLC1mbUOifpwET6vs5kd7OBI8ACJNkzVKKFw3HUncWGGst8VRHjNzwN1wK2I/KeJZ8crlg8vugqQpOOK/T6mefhQBv4WfTAU0TJHLWv2aOTLsJZgBFOGhmioD2Oz5JaGMyraFNJ3qzCnTNpFMdk96BhZkUaa6PEPKicKMLI+eHF0C3XqEEwYa7aKflR+0qNlWufgO8nRLmVhaMzKx6MxjZQ2IYIb9z7XeO0kexdyfvVzEvOjy0rOis9OujLhMXmBkcq/w2OjtluPL45u3bSytzk05o7lzUJ5qZTsu4rpzfXBDQUZIpfwFvQo4jnqqy3JimtLNT76Y9U/vdHTSfa1xd84/+PbswxeTATtXbXDgo6ezB3HdxQ6J4Uwf3uKoLZ8SUwareo4f2A524+Uh7bT8hn0FoQ5bV5/vbLl/7+1tu3NfPJQl59nhnDtqfAZ+ZeFA9FMAc19QKHdFPv3MVkbjW7j80=
-    app: imuaythai
-    on: master
-    skip_cleanup: true
 notifications:
     email:
         on_success: never
         on_failure: always
+deploy:
+    api_key:
+        secure: Qp89mPTdnrxz9IPDNRqoIGV0BfMf9hkb67cL0ITMdQVwXpMJlamEyKKYNN05oG4/vMxMHV6Nr3wgfb4oT1EVFvWC5kwFYjGzEQP+4hY7LsOBKtbf+thFO9ap2+MKeuzm40evF8q5/XyW0MjPyfETKvCEdv19DXSD5GGUyv5EQXnzQPb2+1J4oZYZcGDO3mIcxHR0SXQfzh68Py0OGKAieihOrbvvEBhj6/M8kUA6uExXIHQewHW0BPF4xhUlInr8Xv2N6ckV0XSRtfiCtBQVke1GXOrC4RD9nuD9YTVg44cLVq9ANE0d/kERJJ5nBUNoVBRue8xXltqQ0kUWJAGS3+expHAS+xmoayyJcnRUuIgFI/SkhySeP2Vksc/eT6lxQ8apS0cXBQvEMa7sNOE9QMCX0HyTOMZ7K6Ytw4ciPdLhhZWg5wCXN9J9k5gGgCF89CxSP+UJz178WOqxmNDVt7SxF+DfeNlOp5XN8mp8FcFME/qWUbMTpCmD78N+Eo+2k8CxRsg/fbfmW6GPDJgfABDJ/HCdNWMxTHsmwpRdPEGav2d1MHt6bqo1GSFJsVPHy96JoRYDqeE6VP0BzeNIxSS5OchC57UwpRH15h0kimy8dquEVxD4RWR65mFr899ov+FM0VRQspTOiO/UL9u5iO4LfAVJ/ddaGsjhRTSZ1lM=
+    app: imuaythai
