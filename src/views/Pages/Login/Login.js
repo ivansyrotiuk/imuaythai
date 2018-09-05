@@ -63,7 +63,7 @@ class Login extends Component {
                     <div className="card-block text-center">
                       <div>
                         <h2>Sign up</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>If you do not have account. Please, click the button below to register your account.</p>
                         <Link to="/register" className="btn btn-primary active mt-3">Register Now!</Link>
                       </div>
                     </div>
