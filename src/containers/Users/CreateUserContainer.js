@@ -12,6 +12,9 @@ class CreateUserContainer extends Component {
     componentWillMount() {
         this.props.fetchRoles();
         this.props.fetchCountries();
+
+        const institutionId = this.props.match.params.id;
+        console.log(institutionId);
     }
 
     handleCountryChange(event) {
@@ -24,8 +27,12 @@ class CreateUserContainer extends Component {
             return <Spinner/>;
         }
 
+        const user = {
+            institutionId = this.props.match.params.id
+        };
+
         return (<Loader show={this.props.fetchingGyms} message={<Spinner/>} >
-                    <CreateUserView {...this.props} countryChange={this.handleCountryChange.bind(this)}/>
+                    <CreateUserView {...this.props} initialValues={user}  countryChange={this.handleCountryChange.bind(this)}/>
                 </Loader>);
     }
 }

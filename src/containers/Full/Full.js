@@ -161,7 +161,10 @@ class Full extends Component {
                                 />
                                 <Route path="/institutions/gyms/:id" component={GymViewPageContainer} />
                                 <Route path="/institutions/gyms" component={GymsPageContainer} />
+
+                                <Route path="/institutions/:id/users/create" component={CreateUserContainer} />
                                 <Route path="/users/(create)" component={CreateUserContainer} />
+
                                 <Route
                                     path="/users/(rolerequests)"
                                     name="RoleRequests"
