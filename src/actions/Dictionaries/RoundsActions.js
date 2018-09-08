@@ -9,25 +9,76 @@ export function fetchRounds() {
         });
         axios
             .get('api/dictionaries/rounds/')
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_ROUNDS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
-                    type: actionTypes.FETCH_ROUNDS_REJECTED,
-                    payload: err
+                    type: SHOW_ERROR,
+                    payload: err.message
                 });
             });
     };
 }
 
-export function saveRound(round) {
+export function fetchRound(id) {
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.FETCH_ROUND,
+            payload: id
+        });
+        axios
+            .get('api/dictionaries/rounds/' + id)
+            .then(response => {
+                dispatch({
+                    type: actionTypes.FETCH_ROUND_FULFILLED,
+                    payload: response.data
+                });
+            })
+            .catch(err => {
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: err.message
+                });
+            });
+    };
+}
+
+export function addRound() {
     return {
-        type: actionTypes.SAVE_ROUND,
-        payload: round
+        type: actionTypes.ADD_ROUND
+    };
+}
+
+export function clearRound() {
+    return {
+        type: actionTypes.CLEAR_ROUND
+    };
+}
+
+export function saveRound(round) {
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.SAVE_ROUND
+        });
+
+        return axios
+            .post('api/dictionaries/rounds/save', round)
+            .then(response =>
+                dispatch({
+                    type: actionTypes.SAVE_ROUND_SUCCESS,
+                    payload: response
+                })
+            )
+            .catch(error =>
+                dispatch({
+                    type: SHOW_ERROR,
+                    payload: error.message
+                })
+            );
     };
 }
 
@@ -37,9 +88,10 @@ export function deleteRound(id) {
             type: actionTypes.DELETE_ROUND,
             payload: id
         });
-        return axios.post('api/dictionaries/rounds/remove', {
-            Id: id
-        })
+        return axios
+            .post('api/dictionaries/rounds/remove', {
+                Id: id
+            })
             .then(function(response) {
                 dispatch({
                     type: actionTypes.DELETE_ROUND_SUCCESS,
