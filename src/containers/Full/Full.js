@@ -35,7 +35,7 @@ import ContestRangesDetailsPage from '../../views/Dictionaries/ContestRanges/Con
 import KhanLevelsDetailsPage from '../../views/Dictionaries/KhanLevels/KhanLevelsDetailsPage';
 import SuspensionsDetailsPage from '../../views/Dictionaries/SuspensionTypes/SuspensionTypesDetailsPage';
 import ContestPointsDetailsPage from '../../views/Dictionaries/ContestPoints/ContestPointsDetailsPage';
-import RoundsDetailsPage from '../../views/Dictionaries/Rounds/RoundsDetailsPage';
+import RoundContainer from '../../containers/Dictionaries/RoundContainer';
 import StructuresDetailsPage from '../../views/Dictionaries/FightStructures/StructuresDetailsPage';
 import ContestCategoriesDetailsPage from '../../views/Dictionaries/ContestCategories/ContestCategoriesDetailsPage';
 import ContestCategoriesPageContainer from '../Dictionaries/ContestCategoriesPageContainer';
@@ -204,7 +204,8 @@ class Full extends Component {
                                     path="/dictionaries/levels/:id"
                                     name="KhanLevel"
                                     component={KhanLevelsDetailsPage}
-                                />;
+                                />
+                                ;
                                 <Route
                                     path="/dictionaries/levels/"
                                     name="KhanLevels"
@@ -255,9 +256,8 @@ class Full extends Component {
                                     name="ContestPoints"
                                     component={ContestPointsPageContainer}
                                 />
-                                <Route path="/dictionaries/rounds/:id" name="Rounds" component={RoundsDetailsPage} />
+                                <Route path="/dictionaries/rounds/:id" name="Rounds" component={RoundContainer} />
                                 <Route path="/dictionaries/rounds/" name="Rounds" component={RoundsPageContainer} />
-                                <Route path="/dictionaries/rounds" name="Rounds" component={RoundsPageContainer} />
                                 <Route
                                     path="/dictionaries/structures/:id"
                                     name="Structures"
