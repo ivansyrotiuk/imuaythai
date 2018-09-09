@@ -36,6 +36,9 @@ const InstitutionViewBox = props => {
                     <ActionsBoxButton onClick={actions.goToEditPage}>
                         <Icon name="fa-pencil" /> Edit
                     </ActionsBoxButton>
+                    <ActionsBoxButton onClick={actions.goToCreateMemberPage}>
+                        <Icon name="fa-plus" /> Create a member
+                    </ActionsBoxButton>
                 </ActionsBox>
             </Col>
         </Row>

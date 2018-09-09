@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import Spinner from "../../../views/Components/Spinners/Spinner";
-import {fetchInstitution, fetchInstitutionMembers} from "../../../actions/InstitutionsActions";
-import GymView from "../../../views/Institutions/GymView";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Spinner from '../../../views/Components/Spinners/Spinner';
+import { fetchInstitution, fetchInstitutionMembers } from '../../../actions/InstitutionsActions';
+import GymView from '../../../views/Institutions/GymView';
 
 class GymViewPageContainer extends Component {
-
     componentWillMount() {
         const gymId = this.props.match.params.id;
         this.props.fetchInstitution(gymId);
@@ -14,21 +13,27 @@ class GymViewPageContainer extends Component {
 
     goToEditPageClick() {
         const gymId = this.props.match.params.id;
-        this.props.history.push("/institutions/gyms/edit/" + gymId);
+        this.props.history.push('/institutions/gyms/edit/' + gymId);
+    }
+
+    goToCreateMemberPageClick() {
+        const gymId = this.props.match.params.id;
+        this.props.history.push('/institutions/' + gymId + '/users/create');
     }
 
     render() {
-        const {fetching, gym, members} = this.props;
+        const { fetching, gym, members } = this.props;
 
         if (fetching || !gym) {
-            return (<Spinner/>);
+            return <Spinner />;
         }
 
         const actions = {
-            goToEditPage: this.goToEditPageClick.bind(this)
+            goToEditPage: this.goToEditPageClick.bind(this),
+            goToCreateMemberPage: this.goToCreateMemberPageClick.bind(this)
         };
 
-        return <GymView gym={gym} actions={actions} members={members}/>
+        return <GymView gym={gym} actions={actions} members={members} />;
     }
 }
 
@@ -37,18 +42,21 @@ const mapStateToProps = (state, ownProps) => {
         gym: state.SingleInstitution.institution,
         members: state.SingleInstitution.members,
         fetching: state.SingleInstitution.fetching
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchInstitution: (id) => {
+        fetchInstitution: id => {
             dispatch(fetchInstitution(id));
         },
-        fetchInstitutionMembers: (id) => {
+        fetchInstitutionMembers: id => {
             dispatch(fetchInstitutionMembers(id));
         }
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(GymViewPageContainer)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(GymViewPageContainer);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
-import { fetchGyms, deleteInstitution } from "../../../actions/InstitutionsActions"
-import Spinner from "../../../views/Components/Spinners/Spinner"
-import FederationsListView from "../../../views/Institutions/FederationsListView";
+import { connect } from 'react-redux';
+import { fetchGyms, deleteInstitution } from '../../../actions/InstitutionsActions';
+import Spinner from '../../../views/Components/Spinners/Spinner';
+import FederationsListView from '../../../views/Institutions/FederationsListView';
 
 class GymsPageContainer extends Component {
     constructor(props) {
@@ -22,22 +22,22 @@ class GymsPageContainer extends Component {
     }
 
     handlePreviewFederationClick(id) {
-        this.props.history.push("/institutions/gyms/" + id);
+        this.props.history.push('/institutions/gyms/' + id);
     }
 
     handleEditFederationClick(id) {
-        this.props.history.push("/institutions/gyms/edit/" + id);
+        this.props.history.push('/institutions/gyms/edit/' + id);
     }
 
     handleDeleteFederationClick(id) {
         this.props.deleteGym(id);
     }
 
-    get viewTitle(){
-        return "Gyms";
+    get viewTitle() {
+        return 'Gyms';
     }
 
-    get viewActions(){
+    get viewActions() {
         return {
             addClick: this.handleAddFederationClick,
             previewClick: this.handlePreviewFederationClick,
@@ -47,34 +47,37 @@ class GymsPageContainer extends Component {
     }
 
     render() {
-        const {gyms, fetching} = this.props;
+        const { gyms, fetching } = this.props;
 
         if (fetching) {
-            return <Spinner/>
+            return <Spinner />;
         }
 
-        return <FederationsListView title={this.viewTitle} federations={gyms} actions={this.viewActions}/>
+        return <FederationsListView title={this.viewTitle} federations={gyms} actions={this.viewActions} />;
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    gyms: state.Institutions.gyms,
-    fetching: state.Institutions.fetching,
-    fetched: state.Institutions.fetched,
-    danger: false
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchGyms: () => {
-      dispatch(fetchGyms())
-    },
-    deleteGym: (id) => {
-      return dispatch(deleteInstitution(id));
-    }
-  }
+    return {
+        gyms: state.Institutions.gyms,
+        fetching: state.Institutions.fetching,
+        fetched: state.Institutions.fetched,
+        danger: false
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GymsPageContainer)
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchGyms: () => {
+            dispatch(fetchGyms());
+        },
+        deleteGym: id => {
+            return dispatch(deleteInstitution(id));
+        }
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(GymsPageContainer);

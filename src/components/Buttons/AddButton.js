@@ -20,14 +20,14 @@ export default class AddButton extends Component {
     render() {
         const { tooltip, onClick } = this.props;
         return (
-            <div>
+            <React.Fragment>
                 <button id="AddButton" type="button" className="btn btn-link btn-sm" onClick={onClick}>
                     <i className="fa fa-plus fa-1x" aria-hidden="true" />
                 </button>
                 <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="AddButton" toggle={this.toggle}>
                     {tooltip}
                 </Tooltip>
-            </div>
+            </React.Fragment>
         );
     }
 }

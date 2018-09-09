@@ -1,14 +1,15 @@
 import React from 'react';
 
-import Page from "../../components/Page/Page";
-import PageHeader from "../../components/Page/PageHeader";
-import PageContent from "../../components/Page/PageContent";
-import InstitutionViewBox from "../../components/Institutions/InstitutionViewBox";
-import CollapsiblePanel from "../../components/Common/CollapsiblePanel";
-import InstitutionMembersList from "../../components/Institutions/InstitutionMembersList";
+import Page from '../../components/Page/Page';
+import PageHeader from '../../components/Page/PageHeader';
+import PageContent from '../../components/Page/PageContent';
+import InstitutionViewBox from '../../components/Institutions/InstitutionViewBox';
+import CollapsiblePanel from '../../components/Common/CollapsiblePanel';
+import InstitutionMembersList from '../../components/Institutions/InstitutionMembersList';
+import AddButton from '../../components/Buttons/AddButton';
 
-const GymView = (props) => {
-    const {gym, actions, members} = props;
+const GymView = props => {
+    const { gym, actions, members } = props;
 
     return (
         <Page>
@@ -16,11 +17,11 @@ const GymView = (props) => {
                 <strong>{gym.name}</strong>
             </PageHeader>
             <PageContent>
-                <CollapsiblePanel  trigger="Gym details" open={true}>
-                    <InstitutionViewBox institution={gym} actions={actions}/>
+                <CollapsiblePanel trigger="Gym details" open={true}>
+                    <InstitutionViewBox institution={gym} actions={actions} />
                 </CollapsiblePanel>
-                <CollapsiblePanel  trigger="Members" open={false}>
-                    <InstitutionMembersList members={members}/>
+                <CollapsiblePanel trigger="Members" open={false}>
+                    <InstitutionMembersList members={members} />
                 </CollapsiblePanel>
             </PageContent>
         </Page>
