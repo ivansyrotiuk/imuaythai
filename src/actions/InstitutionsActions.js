@@ -9,13 +9,13 @@ export function fetchGyms() {
         });
         axios
             .get(host + 'api/gyms')
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_GYMS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_GYMS_REJECTED,
                     payload: err
@@ -31,13 +31,13 @@ export function fetchCountryGyms(countryId) {
         });
         axios
             .get(host + 'api/gyms/country?id=' + countryId)
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_COUNTRY_GYMS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_COUNTRY_GYMS_REJECTED,
                     payload: err
@@ -53,13 +53,13 @@ export function fetchNationalFederations() {
         });
         axios
             .get(host + 'api/federations/national')
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_NATIONAL_FEDERATIONS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_NATIONAL_FEDERATIONS_REJECTED,
                     payload: err
@@ -75,13 +75,13 @@ export function fetchContinentalFederations() {
         });
         axios
             .get(host + 'api/federations/continental')
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_CONTINENTAL_FEDERATIONS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_CONTINENTAL_FEDERATIONS_REJECTED,
                     payload: err
@@ -97,13 +97,13 @@ export function fetchWorldFederations() {
         });
         axios
             .get(host + 'api/federations/world')
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_WORLD_FEDERATIONS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_WORLD_FEDERATIONS_REJECTED,
                     payload: err
@@ -119,13 +119,13 @@ export function fetchInstitution(id) {
         });
         axios
             .get(host + 'api/institutions/' + id)
-            .then((response) => {
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((err) => {
+            .catch(err => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_REJECTED,
                     payload: err
@@ -140,7 +140,7 @@ export function addInstitution(institutionType) {
             type: actionTypes.ADD_INSTITUTION,
             payload: {
                 id: 0,
-                institutionType: institutionType,
+                institutionType: institutionType
             }
         });
     };
@@ -149,7 +149,7 @@ export function addInstitution(institutionType) {
 export function resetInstitution(institutionType) {
     return function(dispatch) {
         dispatch({
-            type: actionTypes.RESET_INSTITUTION,
+            type: actionTypes.RESET_INSTITUTION
         });
     };
 }
@@ -178,13 +178,18 @@ export function saveInstitution(institution) {
 
 export function deleteInstitution(id) {
     return function(dispatch) {
+        if (!window.confirm('Are you sure you want to delete it?')) {
+            return;
+        }
+
         dispatch({
             type: actionTypes.DELETE_INSTITUTION,
             payload: id
         });
-        return axios.post(host + 'api/institutions/remove', {
-            Id: id
-        })
+        return axios
+            .post(host + 'api/institutions/remove', {
+                Id: id
+            })
             .then(function(response) {
                 dispatch({
                     type: actionTypes.DELETE_INSTITUTION_SUCCESS,
@@ -201,18 +206,19 @@ export function deleteInstitution(id) {
 }
 
 export function fetchInstitutionMembers(institutionId) {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_INSTITUTION_MEMBERS
         });
-        return axios.get('/api/institutions/members?institutionId=' + institutionId)
-            .then((response)=>{
+        return axios
+            .get('/api/institutions/members?institutionId=' + institutionId)
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_MEMBERS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((error)=>{
+            .catch(error => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_MEMBERS_REJECTED,
                     payload: error
@@ -222,18 +228,19 @@ export function fetchInstitutionMembers(institutionId) {
 }
 
 export function fetchInstitutionGyms(institutionId) {
-    return function (dispatch) {
+    return function(dispatch) {
         dispatch({
             type: actionTypes.FETCH_INSTITUTION_GYMS
         });
-        return axios.get('/api/institutions/gyms?institutionId=' + institutionId)
-            .then((response)=>{
+        return axios
+            .get('/api/institutions/gyms?institutionId=' + institutionId)
+            .then(response => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_GYMS_FULFILLED,
                     payload: response.data
                 });
             })
-            .catch((error)=>{
+            .catch(error => {
                 dispatch({
                     type: actionTypes.FETCH_INSTITUTION_GYMS_REJECTED,
                     payload: error

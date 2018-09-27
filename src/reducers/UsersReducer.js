@@ -119,6 +119,16 @@ export default function reducer(
                 doctors: action.payload
             };
         }
+        case actionTypes.DELETE_USER_SUCCESS: {
+            return {
+                ...state,
+                users: state.users.filter(u => u.id !== action.payload),
+                doctors: state.doctors.filter(u => u.id !== action.payload),
+                fighters: state.fighters.filter(u => u.id !== action.payload),
+                coaches: state.coaches.filter(u => u.id !== action.payload),
+                judges: state.judges.filter(u => u.id !== action.payload)
+            };
+        }
     }
     return state;
 }

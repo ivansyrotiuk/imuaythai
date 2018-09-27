@@ -189,6 +189,9 @@ export function createUser(user) {
 
 export function deleteUser(id) {
     return function(dispatch) {
+        //TODO Refactor it. Sorry for that!!!
+        if (!window.confirm('Are you sure you want to remove the user?')) return;
+
         dispatch({
             type: actionTypes.DELETE_USER
         });
