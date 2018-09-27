@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { userIsAdmin, userCanManageRoles, userCanSeeContests } from '../../auth/auth';
 
 import FightersLinkAuth from '../Links/FightersLinkAuth';
+import JudgesLinkAuth from '../Links/JudgesLinkAuth';
+import DoctorsLinkAuth from '../Links/DoctorsLinkAuth';
+import CoachesLinkAuth from '../Links/CoachesLinkAuth';
 import UsersLinkAuth from '../Links/UsersLinkAuth';
 
 class Sidebar extends Component {
@@ -23,40 +26,26 @@ class Sidebar extends Component {
     // }
 
     render() {
-        const JudgesLink =
-            <NavLink to="/judges" className="nav-link" activeClassName="active">
-                <i className="fa fa-gavel" /> Judges
-            </NavLink>;
-        const CoachesLink =
-            <NavLink to="/coaches" className="nav-link" activeClassName="active">
-                <i className="fa fa-male" /> Coaches
-            </NavLink>;
-        const DoctorsLink =
-            <NavLink to="/doctors" className="nav-link" activeClassName="active">
-                <i className="fa fa-user-md" /> Doctors
-            </NavLink>;
-        
-        const FightersLink =
-            <NavLink to="/fighters" className="nav-link" activeClassName="active">
-                <i className="fa fa-user-md" /> Fighters
-            </NavLink>;
-
-        const GymsLink =
+        const GymsLink = (
             <NavLink to="/institutions/gyms" className="nav-link" activeClassName="active">
                 <i className="fa fa-flag" /> Gyms
-            </NavLink>;
-        const NationalFederationsLink =
+            </NavLink>
+        );
+        const NationalFederationsLink = (
             <NavLink to="/institutions/national" className="nav-link" activeClassName="active">
                 <i className="fa fa-building" /> National federations
-            </NavLink>;
-        const ContinetalFederationsLink =
+            </NavLink>
+        );
+        const ContinetalFederationsLink = (
             <NavLink to="/institutions/continental" className="nav-link" activeClassName="active">
                 <i className="fa fa-building" /> Continental federations
-            </NavLink>;
-        const WorldFederationsLink =
+            </NavLink>
+        );
+        const WorldFederationsLink = (
             <NavLink to="/institutions/world" className="nav-link" activeClassName="active">
                 <i className="fa fa-globe " /> World federations
-            </NavLink>;
+            </NavLink>
+        );
         const ContestsDropdown = userCanSeeContests(() => (
             <li className={this.activeRoute('/contests')}>
                 <a className="nav-link nav-dropdown-toggle open" href="#" onClick={this.handleClick.bind(this)}>
@@ -65,12 +54,14 @@ class Sidebar extends Component {
                 <ul className="nav-dropdown-items">
                     <li className="nav-item">
                         <NavLink to="/contests" className="nav-link" activeClassName="active">
-                            <i className="fa fa-trophy" />Contests list
+                            <i className="fa fa-trophy" />
+                            Contests list
                         </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink to="/fight" className="nav-link" activeClassName="active">
-                            <i className="fa fa-bar-chart" />Fight draw demo
+                            <i className="fa fa-bar-chart" />
+                            Fight draw demo
                         </NavLink>
                     </li>
                 </ul>
@@ -83,74 +74,60 @@ class Sidebar extends Component {
             </NavLink>
         ));
 
-        const Dictinaries = userIsAdmin(() => <li className={this.activeRoute('/dictionaries')}>
-            <a className="nav-link nav-dropdown-toggle" href="#" onClick={this.handleClick.bind(this)}>
-                <i className="icon-puzzle" /> Dictionaries
-            </a>
-            <ul className="nav-dropdown-items">
-                <li className="nav-item">
-                    <NavLink to="/dictionaries/types" className="nav-link" activeClassName="active">
-                        <i className="icon-puzzle" /> Contest types
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/dictionaries/ranges" className="nav-link" activeClassName="active">
-                        <i className="icon-puzzle" /> Contest ranges
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/dictionaries/levels" className="nav-link" activeClassName="active">
-                        <i className="icon-puzzle" /> Khan levels
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink
-                        to="/dictionaries/suspensions"
-                        className="nav-link"
-                        activeClassName="active"
-                    >
-                        <i className="icon-puzzle" /> Suspension types
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/dictionaries/points" className="nav-link" activeClassName="active">
-                        <i className="icon-puzzle" /> Contest points
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink
-                        to="/dictionaries/weightcategories"
-                        className="nav-link"
-                        activeClassName="active"
-                    >
-                        <i className="icon-puzzle" /> Weight categories
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink to="/dictionaries/rounds" className="nav-link" activeClassName="active">
-                        <i className="icon-puzzle" /> Rounds
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink
-                        to="/dictionaries/structures"
-                        className="nav-link"
-                        activeClassName="active"
-                    >
-                        <i className="icon-puzzle" /> Fight structures
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink
-                        to="/dictionaries/categories"
-                        className="nav-link"
-                        activeClassName="active"
-                    >
-                        <i className="icon-puzzle" /> Contest categories
-                    </NavLink>
-                </li>
-            </ul>
-        </li>);
+        const Dictinaries = userIsAdmin(() => (
+            <li className={this.activeRoute('/dictionaries')}>
+                <a className="nav-link nav-dropdown-toggle" href="#" onClick={this.handleClick.bind(this)}>
+                    <i className="icon-puzzle" /> Dictionaries
+                </a>
+                <ul className="nav-dropdown-items">
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/types" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Contest types
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/ranges" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Contest ranges
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/levels" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Khan levels
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/suspensions" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Suspension types
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/points" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Contest points
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/weightcategories" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Weight categories
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/rounds" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Rounds
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/structures" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Fight structures
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/dictionaries/categories" className="nav-link" activeClassName="active">
+                            <i className="icon-puzzle" /> Contest categories
+                        </NavLink>
+                    </li>
+                </ul>
+            </li>
+        ));
 
         return (
             <div className="sidebar">
@@ -166,18 +143,10 @@ class Sidebar extends Component {
                                 <i className="fa fa-university" /> Institutions
                             </a>
                             <ul className="nav-dropdown-items">
-                                <li className="nav-item">
-                                    {GymsLink}
-                                </li>
-                                <li className="nav-item">
-                                    {NationalFederationsLink}
-                                </li>
-                                <li className="nav-item">
-                                    {ContinetalFederationsLink}
-                                </li>
-                                <li className="nav-item">
-                                    {WorldFederationsLink}
-                                </li>
+                                <li className="nav-item">{GymsLink}</li>
+                                <li className="nav-item">{NationalFederationsLink}</li>
+                                <li className="nav-item">{ContinetalFederationsLink}</li>
+                                <li className="nav-item">{WorldFederationsLink}</li>
                             </ul>
                         </li>
                         <li className={this.activeRoute('/users')}>
@@ -186,25 +155,22 @@ class Sidebar extends Component {
                             </a>
                             <ul className="nav-dropdown-items">
                                 <li className="nav-item">
-                                    {UsersLinkAuth}
+                                    <UsersLinkAuth />
                                 </li>
                                 <li className="nav-item">
-                                    {FightersLinkAuth}
+                                    <FightersLinkAuth />
                                 </li>
                                 <li className="nav-item">
-                                    {JudgesLink}
+                                    <JudgesLinkAuth />
                                 </li>
                                 <li className="nav-item">
-                                    {CoachesLink}
+                                    <CoachesLinkAuth />
                                 </li>
                                 <li className="nav-item">
-                                    {DoctorsLink}
+                                    <DoctorsLinkAuth />
                                 </li>
                                 <li className="nav-item">
-                                    {FightersLink}
-                                </li>
-                                <li className="nav-item">
-                                    {UserRoleRequestLink}
+                                    <UserRoleRequestLink />
                                 </li>
                             </ul>
                         </li>
