@@ -7,6 +7,7 @@ import Col from '../../components/Layout/Col';
 import PageContent from '../../components/Page/PageContent';
 import Right from '../../components/Common/Right';
 import EditButton from '../Components/Buttons/EditButton';
+import ContestEditButtonAuth from '../../components/Contest/Buttons/ContestEditButtonAuth';
 
 class ContestViewPage extends Component {
     render() {
@@ -17,7 +18,7 @@ class ContestViewPage extends Component {
                 <PageHeader>
                     <strong>Contest</strong>
                     <Right>
-                        <EditButton click={actions.handleEditContestClick} />
+                        <ContestEditButtonAuth click={actions.handleEditContestClick} />
                     </Right>
                 </PageHeader>
                 <PageContent>

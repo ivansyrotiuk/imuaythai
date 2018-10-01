@@ -4,8 +4,8 @@ import 'react-table/react-table.css';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
 import Row from '../Layout/Row';
-import RemoveButton from '../../views/Components/Buttons/RemoveButton';
-import EditButton from '../../views/Components/Buttons/EditButton';
+import ContestRemoveButtonAuth from '../../components/Contest/Buttons/ContestRemoveButtonAuth';
+import ContestEditButtonAuth from '../../components/Contest/Buttons/ContestEditButtonAuth';
 import PreviewButton from '../../views/Components/Buttons/PreviewButton';
 
 const ContestsTable = props => {
@@ -34,9 +34,9 @@ const ContestsTable = props => {
                                 <PreviewButton />
                             </Link>
                             <Link to={'/contests/' + row.value + '/edit'}>
-                                <EditButton />
+                                <ContestEditButtonAuth />
                             </Link>
-                            <RemoveButton click={() => props.handleRemoveContestClick(row.value)} />
+                            <ContestRemoveButtonAuth click={() => props.handleRemoveContestClick(row.value)} />
                         </Row>
                     )
                 }
