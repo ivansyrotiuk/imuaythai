@@ -8,7 +8,7 @@ import ContestCategoriesButtonAuth from '../../components/Contest/Buttons/Contes
 import FightsButtonAuth from '../../components/Contest/Buttons/FightsButtonAuth';
 import JudgesManageButtonAuth from '../../components/Contest/Buttons/JudgesManageButtonAuth';
 import MyRequestsButtonAuth from '../../components/Contest/Buttons/MyRequestsButtonAuth';
-
+import { userCanAcceptContestRequest } from '../../auth/auth';
 import ActionsBox from '../../components/Page/ActionsBox';
 import ActionBoxItem from '../../components/Page/ActionBoxItem';
 
@@ -26,6 +26,10 @@ export default class ContestInfoCard extends Component {
             doctorsCount,
             pendingCount
         } = this.props;
+
+        const PendingRequestsCount = userCanAcceptContestRequest(props => (
+            <span className="badge badge-pill badge-warning">{props.pendingCount}</span>
+        ));
         return (
             <Row>
                 <div className="col-md-2">
@@ -101,7 +105,7 @@ export default class ContestInfoCard extends Component {
                         <ActionBoxItem>
                             <div>
                                 <PendingRequestsButtonAuth handlePendingRequestsClick={handlePendingRequestsClick} />
-                                <span className="badge badge-pill badge-warning">{pendingCount}</span>
+                                <PendingRequestsCount pendingCount={pendingCount} />
                             </div>
                         </ActionBoxItem>
                         <ActionBoxItem>

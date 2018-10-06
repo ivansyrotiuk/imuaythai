@@ -86,6 +86,8 @@ export const saveContest = contest => {
 };
 
 export const removeContest = id => {
+    if (!window.confirm('Are you sure you want to remove the contest')) return;
+
     return dispatch => {
         dispatch({
             type: actionTypes.REMOVE_CONTEST

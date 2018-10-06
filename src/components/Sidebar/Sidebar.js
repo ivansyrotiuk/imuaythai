@@ -58,12 +58,6 @@ class Sidebar extends Component {
                             Contests list
                         </NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink to="/fight" className="nav-link" activeClassName="active">
-                            <i className="fa fa-bar-chart" />
-                            Fight draw demo
-                        </NavLink>
-                    </li>
                 </ul>
             </li>
         ));
