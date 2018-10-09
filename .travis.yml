@@ -6,8 +6,15 @@ branches:
         - master
         - develop
 script:
+    - export NODE_ENV=production
     - npm install
     - npm run build
+    if: branch = master
+script:
+    - export NODE_ENV=develop
+    - npm install
+    - npm run build
+    if: branch = develop
 notifications:
     email:
         on_success: never
