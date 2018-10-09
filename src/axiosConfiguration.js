@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const configApiHost = () => {
+  console.log(process.env);
   axios.defaults.baseURL = process.env.imuaythai_api || "http://localhost:5000/";
 };
 
