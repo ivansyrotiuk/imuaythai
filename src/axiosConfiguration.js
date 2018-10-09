@@ -1,10 +1,7 @@
 import axios from "axios";
 
 export const configApiHost = () => {
-  axios.defaults.baseURL =
-    process.env.NODE_ENV !== "production"
-      ? "http://localhost:5000/"
-      : "https://imuaythai-api.herokuapp.com/";
+  axios.defaults.baseURL = process.env.imuaythai_api || "http://localhost:5000/";
 };
 
 export const setAuthToken = token => {
