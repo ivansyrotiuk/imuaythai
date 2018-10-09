@@ -1,9 +1,7 @@
 language: node_js
 node_js:
     - stable
-env:
-    - NODE_ENV=production
-    - NODE_ENV=development
+
 branches:
     only:
         - master
@@ -11,6 +9,14 @@ branches:
 script:
     - npm install
     - npm run build
+
+matrix:
+  include:
+    - if: branch =~ ^master
+      env: NODE_ENV=production
+
+    - if: branch =~ ^develop
+      env: NODE_ENV=development
 notifications:
     email:
         on_success: never
