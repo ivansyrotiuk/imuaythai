@@ -16,7 +16,7 @@ class UsersViewContainer extends Component {
             return <Spinner />;
         }
 
-        return <UsersView users={users} />;
+        return <UsersView users={users} deleteUser={this.props.deleteUser}/>;
     }
 }
 
