@@ -17,6 +17,7 @@ const config = process.env.REACT_APP_STAGE === 'production'
     ? dev
     : local;
 
+console.log(process.env);
 console.log(config);
 
 export default config;
