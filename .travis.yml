@@ -13,10 +13,10 @@ script:
 matrix:
   include:
     - if: branch =~ ^master
-      env: NODE_ENV=production
+      env: NODE_ENV=production API_HOST=https://imuaythai-api.herokuapp.com/
 
     - if: branch =~ ^develop
-      env: NODE_ENV=development
+      env: NODE_ENV=development API_HOST=https://imuaythai-api-dev.herokuapp.com/
 notifications:
     email:
         on_success: never
