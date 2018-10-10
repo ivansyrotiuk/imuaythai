@@ -16,7 +16,7 @@ matrix:
     - if: branch =~ ^develop
       script:
         - npm install
-        - npm run build:development
+        - npm run build:staging
 
 notifications:
     email:
