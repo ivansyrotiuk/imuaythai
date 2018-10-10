@@ -59,8 +59,8 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "production": "process.env.REACT_APP_SECRET_CODE=production react-scripts build",
-        "development": "process.env.REACT_APP_SECRET_CODE=development react-scripts build",
+        "production": "react-scripts build",
+        "development": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "flow": "flow"
