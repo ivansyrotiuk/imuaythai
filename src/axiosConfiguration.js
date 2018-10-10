@@ -1,4 +1,5 @@
 import axios from "axios";
+console.log(process);
 console.log(process.env);
 export const configApiHost = () => {
     if (process.env.NODE_ENV == "production") {

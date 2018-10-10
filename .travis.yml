@@ -10,15 +10,13 @@ matrix:
   include:
     - if: branch =~ ^master
       script:
-        - export REACT_APP_SECRET_CODE=production 
         - npm install
-        - npm run production
+        - npm run build:production
 
     - if: branch =~ ^develop
       script:
-        - export REACT_APP_SECRET_CODE=development 
         - npm install
-        - npm run development
+        - npm run build:development
 
 notifications:
     email:
