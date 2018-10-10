@@ -6,17 +6,18 @@ branches:
     only:
         - master
         - develop
-script:
-    - npm install
-    - npm run build
-
 matrix:
   include:
     - if: branch =~ ^master
-      env: process.env.REACT_APP_HOST_ENV=production
+      script:
+        - npm install
+        - npm run production
 
     - if: branch =~ ^develop
-      env: process.env.REACT_APP_HOST_ENV=development
+      script:
+        - npm install
+        - npm run development
+
 notifications:
     email:
         on_success: never
