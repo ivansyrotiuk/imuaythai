@@ -1,9 +1,9 @@
 import axios from "axios";
-
+console.log(process.env);
 export const configApiHost = () => {
-    if (process.env.REACT_APP_ENVIRONMENT === "production") {
+    if (process.env.NODE_ENV == "production") {
         axios.defaults.baseURL = "https://imuaythai-api.herokuapp.com/";
-    } else if (process.env.REACT_APP_ENVIRONMENT === "development") {
+    } else if (process.env.NODE_ENV == "development") {
         axios.defaults.baseURL = "https://imuaythai-api-dev.herokuapp.com/";
     } else axios.defaults.baseURL = "http://localhost:5000/";
 };
