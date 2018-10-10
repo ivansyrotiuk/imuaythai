@@ -59,8 +59,6 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "build:production": "REACT_APP_STAGE=production react-scripts build",
-        "build:staging": "REACT_APP_STAGE=dev react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "flow": "flow"

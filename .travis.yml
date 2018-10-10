@@ -1,23 +1,13 @@
 language: node_js
 node_js:
     - stable
-
 branches:
     only:
         - master
         - develop
-matrix:
-  include:
-    - if: branch =~ ^master
-      script:
+script:
         - npm install
-        - npm run build:production
-
-    - if: branch =~ ^develop
-      script:
-        - npm install
-        - npm run build:staging
-
+        - npm run build
 notifications:
     email:
         on_success: never

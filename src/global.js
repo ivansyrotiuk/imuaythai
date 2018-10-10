@@ -1,4 +1,2 @@
-export const host =
-    process.env.NODE_ENV !== 'production' ? 'http://localhost:5000/' : 'https://imuaythai-api.herokuapp.com/';
-export const siteHost =
-    process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/#/' : 'https://imuaythai.herokuapp.com/';
+export const host = process.env.REACT_APP_API || 'http://localhost:5000/';
+export const siteHost =  process.env.REACT_APP_SITE_URL || 'http://localhost:3000/#/';
