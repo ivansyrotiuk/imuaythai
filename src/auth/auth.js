@@ -110,12 +110,96 @@ export const userCanSeeContests = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
+                r == 'Fighter' ||
+                r == 'Guest' ||
                 r == 'Admin' ||
                 r == 'GymAdmin' ||
                 r == 'NationalFederation' ||
                 r == 'ContinentalFederation' ||
                 r == 'WorldFederation'
         ) != undefined || !state.Account.user.InstitutionId,
+    wrapperDisplayName: 'userCanManageRoles'
+});
+
+export const userCanSeeInstitutions = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        state.Account.user.roles.find(
+            r =>
+                r == 'Fighter' ||
+                r == 'Guest' ||
+                r == 'Admin' ||
+                r == 'GymAdmin' ||
+                r == 'NationalFederation' ||
+                r == 'ContinentalFederation' ||
+                r == 'WorldFederation'
+        ) != undefined,
+    wrapperDisplayName: 'userCanManageRoles'
+});
+
+export const userCanEditInstitutions = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        state.Account.user.roles.find(
+            r =>
+                r == 'Admin' ||
+                r == 'GymAdmin' ||
+                r == 'NationalFederation' ||
+                r == 'ContinentalFederation' ||
+                r == 'WorldFederation'
+        ) != undefined,
+    wrapperDisplayName: 'userCanManageRoles'
+});
+
+export const userCanDeleteInstitutions = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        state.Account.user.roles.find(
+            r =>
+                r == 'Admin' ||
+                r == 'GymAdmin' ||
+                r == 'NationalFederation' ||
+                r == 'ContinentalFederation' ||
+                r == 'WorldFederation'
+        ) != undefined,
+    wrapperDisplayName: 'userCanManageRoles'
+});
+
+export const userCanSeeUsers = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        state.Account.user.roles.find(
+            r =>
+                r == 'Fighter' ||
+                r == 'Guest' ||
+                r == 'Admin' ||
+                r == 'GymAdmin' ||
+                r == 'NationalFederation' ||
+                r == 'ContinentalFederation' ||
+                r == 'WorldFederation'
+        ) != undefined,
+    wrapperDisplayName: 'userCanManageRoles'
+});
+
+export const userCanEditUsers = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        state.Account.user.roles.find(
+            r =>
+                r == 'Admin' ||
+                r == 'GymAdmin' ||
+                r == 'NationalFederation' ||
+                r == 'ContinentalFederation' ||
+                r == 'WorldFederation'
+        ) != undefined,
+    wrapperDisplayName: 'userCanManageRoles'
+});
+
+export const userCanDeleteUsers = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        state.Account.user.roles.find(
+            r =>
+                r == 'Admin' ||
+                r == 'GymAdmin' ||
+                r == 'NationalFederation' ||
+                r == 'ContinentalFederation' ||
+                r == 'WorldFederation'
+        ) != undefined,
     wrapperDisplayName: 'userCanManageRoles'
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import DoctorsLink from './DoctorsLink';
-import { userIsAdmin } from '../../auth/auth';
+import { userCanSeeUsers } from '../../auth/auth';
 
-const DoctorsLinkAuth = userIsAdmin(() => <DoctorsLink />);
+const DoctorsLinkAuth = userCanSeeUsers(() => <DoctorsLink />);
 
 export default DoctorsLinkAuth;
