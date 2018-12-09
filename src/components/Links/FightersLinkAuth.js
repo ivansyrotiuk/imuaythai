@@ -1,7 +1,7 @@
 import React from 'react';
 import FightersLink from './FightersLink';
-import { userIsAdmin } from '../../auth/auth';
+import { userCanSeeUsers } from '../../auth/auth';
 
-const FightersLinkAuth = userIsAdmin(() => <FightersLink />);
+const FightersLinkAuth = userCanSeeUsers(() => <FightersLink />);
 
 export default FightersLinkAuth;
