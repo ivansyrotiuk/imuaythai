@@ -1,7 +1,7 @@
 import React from 'react';
 import CoachesLink from './CoachesLink';
-import { userIsAdmin } from '../../auth/auth';
+import { userCanSeeUsers } from '../../auth/auth';
 
-const CoachesLinkAuth = userIsAdmin(() => <CoachesLink />);
+const CoachesLinkAuth = userCanSeeUsers(() => <CoachesLink />);
 
 export default CoachesLinkAuth;

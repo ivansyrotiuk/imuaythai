@@ -21,6 +21,8 @@ import ResetPassword from './containers/Login/ResetPasswordContainer';
 
 import Page404 from './views/Pages/Page404/';
 import Page500 from './views/Pages/Page500/';
+import Payments from './views/Pages/Payments/Payments';
+
 import './styles/accord.css';
 
 const history = createBrowserHistory();
@@ -50,6 +52,7 @@ ReactDOM.render(
                 <Route exact path="/resetpassword" name="Reset password" component={ResetPassword} />
                 <Route exact path="/404" name="Page 404" component={Page404} />
                 <Route exact path="/500" name="Page 500" component={Page500} />
+                <Route exact path="/Payments" name="Payments" component={Payments} />
                 <Route path="/home" name="Home" component={FrontPage} />
                 <Route path="/" name="Home" component={userIsNotAuthenticatedRedir(userWithoutRoleRedir(Full))} />
             </Switch>

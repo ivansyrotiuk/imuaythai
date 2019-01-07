@@ -7,6 +7,7 @@ import Avatar from 'react-avatar';
 import RemoveButton from '../../views/Components/Buttons/RemoveButton';
 import EditButton from '../../views/Components/Buttons/EditButton';
 import PreviewButton from '../../views/Components/Buttons/PreviewButton';
+import { userCanSeeUsers, userCanEditUsers, userCanDeleteUsers } from '../../auth/auth';
 
 const UserTable = props => {
     return (
@@ -41,19 +42,28 @@ const UserTable = props => {
                 {
                     Header: 'Actions',
                     accessor: 'id',
-                    Cell: row => (
-                        <div className="row justify-content-around">
+                    Cell: row => {
+                        const PreviewButtonAuth = userCanSeeUsers(() => (
                             <Link to={'/users/' + row.value}>
                                 <PreviewButton id={row.value} />
                             </Link>
+                        ));
+                        const EditButtonAuth = userCanEditUsers(() => (
                             <Link to={'/users/' + row.value + '/edit'}>
                                 <EditButton id={row.value} />
                             </Link>
-                            {props.deleteUser && (
-                                <RemoveButton id={row.value} click={() => props.deleteUser(row.value)} />
-                            )}
-                        </div>
-                    )
+                        ));
+                        const DeleteButtonAuth = userCanDeleteUsers(() => (
+                            <RemoveButton id={row.value} click={() => props.deleteUser(row.value)} />
+                        ));
+                        return (
+                            <div className="row justify-content-around">
+                                <PreviewButtonAuth />
+                                <EditButtonAuth />
+                                {props.deleteUser && <DeleteButtonAuth />}
+                            </div>
+                        );
+                    }
                 }
             ]}
             defaultPageSize={10}

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import EditButton from '../../../views/Components/Buttons/EditButton';
 import PreviewButton from '../../../views/Components/Buttons/PreviewButton';
+import { userCanSeeInstitutions, userCanEditInstitutions, userCanDeleteInstitutions } from '../../../auth/auth';
 
 const InstitutionGymsTable = props => {
     return (
@@ -34,16 +35,26 @@ const InstitutionGymsTable = props => {
                 {
                     Header: 'Actions',
                     accessor: 'id',
-                    Cell: row => (
-                        <div className="row justify-content-around">
+                    Cell: row => {
+                        const PreviewInstitution = userCanSeeInstitutions(() => (
                             <Link to={'/institutions/gyms/' + row.value}>
                                 <PreviewButton id={row.value} />
                             </Link>
+                        ));
+
+                        const EditInstitution = userCanEditInstitutions(() => (
                             <Link to={'/institutions/gyms/edit/' + row.value}>
                                 <EditButton id={row.value} />
                             </Link>
-                        </div>
-                    )
+                        ));
+
+                        return (
+                            <div className="row justify-content-around">
+                                <PreviewInstitution />
+                                <EditInstitution />
+                            </div>
+                        );
+                    }
                 }
             ]}
             defaultPageSize={10}
