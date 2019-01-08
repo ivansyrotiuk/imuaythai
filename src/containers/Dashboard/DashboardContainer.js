@@ -8,8 +8,6 @@ import { fetchContestEvents } from '../../actions/DashboardActions';
 class DashboardContainer extends Component {
     componentWillMount() {
         this.props.fetchContestEvents();
-        console.log(window.location);
-        console.log(window.location.search);
     }
 
     render() {

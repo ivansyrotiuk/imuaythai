@@ -35,6 +35,9 @@ if (persistedState != undefined && persistedState.Account != undefined) {
     setAuthToken(persistedState.Account.authToken);
 }
 
+console.log(window.location);
+console.log(window.location.search);
+
 ReactDOM.render(
     <Provider store={store}>
         <HashRouter history={history}>
