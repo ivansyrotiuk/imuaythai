@@ -22,6 +22,8 @@ import Rounds from './RoundsReducer';
 import Structures from './StructuresReducer';
 import Documents from './DocumentsReducer';
 import Dashboard from './DashboardReducer';
+import LicenseTypes from './LicenseTypesReducer';
+import License from './LicenseReducer';
 
 import { reducer as reduxFormReducer } from 'redux-form';
 
@@ -49,5 +51,7 @@ export default combineReducers({
     Rounds,
     Structures,
     Documents,
+    LicenseTypes,
+    License,
     form: reduxFormReducer
 });

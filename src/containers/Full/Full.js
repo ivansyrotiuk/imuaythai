@@ -85,6 +85,8 @@ import UserDocuments from '../Users/UserDocumentContainer';
 import CreateUserContainer from '../Users/CreateUserContainer';
 import WeightAgeCategoryPageContainer from '../Dictionaries/WeightAgeCategoryPageContainer';
 import UsersViewContainer from '../Users/UsersViewContainer';
+import AvailableLicensesContainer from '../Licenses/AvailableLicensesContainer';
+import BuyLicenseContainer from '../Licenses/BuyLicenseContainer';
 
 class Full extends Component {
     render() {
@@ -325,6 +327,10 @@ class Full extends Component {
                                     name="Edit contest"
                                     component={ContestEditContainer}
                                 />
+                                
+                                <Route path="/license/:typeId/(buy)" name="Buy license" component={BuyLicenseContainer}/>
+                                <Route path="/license/buy" name="Buy license" component={AvailableLicensesContainer}/>
+                             
                                 <Route path="/contests/:id" name="Contest view" component={ContestViewContainer} />
                                 <Route path="/contests/" name="Contests" component={ContestsContainer} />
                                 <Route path="/fights/:id" name="Fights overview" component={FightContainer} />
