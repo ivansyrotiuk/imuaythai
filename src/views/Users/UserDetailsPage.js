@@ -3,6 +3,7 @@ import Page from '../../components/Page/Page';
 import PageHeader from '../../components/Page/PageHeader';
 import PageContent from '../../components/Page/PageContent';
 import DocumentContainer from '../../containers/Users/UserDocumentContainer';
+import UserLicenses from '../../containers/Users/UserLicenses';
 import UserDetails from '../../components/Users/UserDetails';
 import UserFightsStatistics from '../../components/Users/UserFightsStatistics';
 import CollapsiblePanel from '../../components/Common/CollapsiblePanel';
@@ -14,7 +15,7 @@ import Col from '../../components/Layout/Col';
 import Row from '../../components/Layout/Row';
 
 const UserDetailsPage = props => {
-    const { user, handleEditClick, handleRolesClick, handlePrintClick } = props;
+    const { user, handleEditClick, handleRolesClick, handlePrintClick, handleBuyLicenseClick } = props;
     return (
         <Page>
             <PageHeader>
@@ -37,6 +38,9 @@ const UserDetailsPage = props => {
                                 <ActionsBoxButton onClick={handlePrintClick}>
                                     <Icon name="fa-qrcode" /> Print QR code
                                 </ActionsBoxButton>
+                                <ActionsBoxButton onClick={handleBuyLicenseClick}>
+                                    <Icon name="fa-cart-plus" /> Buy license
+                                </ActionsBoxButton>
                             </ActionsBox>
                         </Col>
                     </Row>
@@ -48,6 +52,10 @@ const UserDetailsPage = props => {
 
                 <CollapsiblePanel trigger="Documents" open={true}>
                     <DocumentContainer type="user" id={user.id} />
+                </CollapsiblePanel>
+
+                <CollapsiblePanel trigger="Licenses" open={true}>
+                    <UserLicenses judgeLicenses={user.judgeLicenses} fighterLicenses={user.fighterLicenses} coachLicenses={user.coachLicenses}/>
                 </CollapsiblePanel>
             </PageContent>
         </Page>

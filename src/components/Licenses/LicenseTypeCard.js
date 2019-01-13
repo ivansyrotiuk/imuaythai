@@ -2,8 +2,7 @@ import React from 'react';
 import {  Link } from 'react-router-dom';
 
 export const LicenseTypeCard = props => {
-    const { type } = props;
-  
+    const { type, handleBuyClick } = props;
     return (
         <div className="col-md-6 col-sm-6 col-lg-3">
             <div className="card">
@@ -16,9 +15,7 @@ export const LicenseTypeCard = props => {
                     </div>
 
                     <div className="row justify-content-center">
-                        <Link to={`license/${type.id}/buy`}>
-                            <div className="btn btn-primary">Buy</div>
-                        </Link>
+                        <div className="btn btn-primary" onClick={() => handleBuyClick(type.id, type.institutionId)}>Buy</div>
                     </div>
                 </div>
             </div>

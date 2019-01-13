@@ -23,6 +23,28 @@ export function fetchLicenseTypes() {
     };
 }
 
+export function fetchCurrentContests() {
+    return function(dispatch) {
+        dispatch({
+            type: actionTypes.FETCH_LICENSE_CURRENT_CONTESTS
+        });
+        axios
+            .get("api/contests/current")
+            .then(response => {
+                dispatch({
+                    type: actionTypes.FETCH_LICENSE_CURRENT_CONTESTS_FULFILLED,
+                    payload: response.data
+                });
+            })
+            .catch(err => {
+                dispatch({
+                    type: actionTypes.FETCH_LICENSE_CURRENT_CONTESTS_REJECTED,
+                    payload: err
+                });
+            });
+    };
+}
+
 export function fetchPayment(typeId, institutionId = null) {
     return function(dispatch) {
         dispatch({
@@ -44,7 +66,10 @@ export function fetchPayment(typeId, institutionId = null) {
                 }).then(r => {
                     dispatch({
                         type: actionTypes.FETCH_PAYMENT_FULFILLED,
-                        payload: r.data
+                        payload: {
+                            payment: r.data,
+                            license: response.data
+                        }
                     });
                 }).catch(err => {
                     dispatch({

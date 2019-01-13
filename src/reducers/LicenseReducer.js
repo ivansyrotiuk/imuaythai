@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/types/licenseActionsTypes';
 export default function reducer(
     state = {
         payment: {},
+        license: {},
         fetching: false,
         error: null
     },
@@ -18,14 +19,15 @@ export default function reducer(
             return {
                 ...state,
                 fetching: false,
-                payment: action.payload
+                payment: action.payload.payment,
+                license: action.payload.license,
             };
         }
         case actionTypes.FETCH_PAYMENT_REJECTED: {
             return {
                 ...state,
                 fetching: false,
-                error: action.payload
+                error: action.payload,
             };
         }
     }

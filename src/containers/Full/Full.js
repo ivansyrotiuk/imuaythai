@@ -100,6 +100,16 @@ class Full extends Component {
                         <NotificationsBox />
                         <div className="container-fluid">
                             <Switch>
+
+                                <Route path="/account/licenses/:typeId/institution/:institutionId/buy" name="Buy license" component={BuyLicenseContainer}/>
+                                <Route path="/account/licenses/:typeId/institution/:institutionId/contest/:contestId/buy" name="Buy license" component={BuyLicenseContainer}/>
+
+                                <Route path="/account/licenses/:typeId/buy" name="Buy license" component={BuyLicenseContainer}/>
+                                <Route path="/account/licenses/:typeId/contest/:contest/buy" name="Buy license" component={BuyLicenseContainer}/>
+
+                                <Route path="/account/licenses/buy" name="Buy license" component={AvailableLicensesContainer}/>
+                             
+
                                 <Route path="/dashboard" name="Dashboard" component={DashboardContainer} />
                                 <Route path="/components/buttons" name="Buttons" component={Buttons} />
                                 <Route path="/components/cards" name="Cards" component={Cards} />
@@ -328,9 +338,6 @@ class Full extends Component {
                                     component={ContestEditContainer}
                                 />
                                 
-                                <Route path="/license/:typeId/(buy)" name="Buy license" component={BuyLicenseContainer}/>
-                                <Route path="/license/buy" name="Buy license" component={AvailableLicensesContainer}/>
-                             
                                 <Route path="/contests/:id" name="Contest view" component={ContestViewContainer} />
                                 <Route path="/contests/" name="Contests" component={ContestsContainer} />
                                 <Route path="/fights/:id" name="Fights overview" component={FightContainer} />
