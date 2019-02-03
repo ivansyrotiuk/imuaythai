@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
-import { Link } from 'react-router-dom';
-import Avatar from 'react-avatar';
-import RemoveButton from '../../views/Components/Buttons/RemoveButton';
-import EditButton from '../../views/Components/Buttons/EditButton';
-import PreviewButton from '../../views/Components/Buttons/PreviewButton';
-import { userCanSeeUsers, userCanEditUsers, userCanDeleteUsers } from '../../auth/auth';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+import { Link } from "react-router-dom";
+import Avatar from "react-avatar";
+import RemoveButton from "../../views/Components/Buttons/RemoveButton";
+import EditButton from "../../views/Components/Buttons/EditButton";
+import PreviewButton from "../../views/Components/Buttons/PreviewButton";
+import { userCanSeeUsers, userCanEditUsers, userCanDeleteUsers } from "../../auth/auth";
 
 const UserTable = props => {
     return (
@@ -15,11 +15,11 @@ const UserTable = props => {
             data={props.users}
             columns={[
                 {
-                    Header: '',
-                    id: 'photo',
+                    Header: "",
+                    id: "photo",
                     accessor: d => {
                         return {
-                            name: d.firstname + ' ' + d.surname,
+                            name: d.firstname + " " + d.surname,
                             photo: d.photo
                         };
                     },
@@ -27,29 +27,29 @@ const UserTable = props => {
                     Cell: row => <Avatar size={40} name={row.value.name} src={row.value.photo} round={true} />
                 },
                 {
-                    Header: 'First Name',
-                    accessor: 'firstname'
+                    Header: "First Name",
+                    accessor: "firstname"
                 },
                 {
-                    Header: 'Last Name',
-                    id: 'lastName',
+                    Header: "Last Name",
+                    id: "lastName",
                     accessor: d => d.surname
                 },
                 {
-                    Header: 'Country',
-                    accessor: 'countryName'
+                    Header: "Country",
+                    accessor: "countryName"
                 },
                 {
-                    Header: 'Actions',
-                    accessor: 'id',
+                    Header: "Actions",
+                    accessor: "id",
                     Cell: row => {
                         const PreviewButtonAuth = userCanSeeUsers(() => (
-                            <Link to={'/users/' + row.value}>
+                            <Link to={"/users/" + row.value}>
                                 <PreviewButton id={row.value} />
                             </Link>
                         ));
                         const EditButtonAuth = userCanEditUsers(() => (
-                            <Link to={'/users/' + row.value + '/edit'}>
+                            <Link to={"/users/" + row.value + "/edit"}>
                                 <EditButton id={row.value} />
                             </Link>
                         ));
