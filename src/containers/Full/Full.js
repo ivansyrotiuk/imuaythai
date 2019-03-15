@@ -85,6 +85,8 @@ import UserDocuments from '../Users/UserDocumentContainer';
 import CreateUserContainer from '../Users/CreateUserContainer';
 import WeightAgeCategoryPageContainer from '../Dictionaries/WeightAgeCategoryPageContainer';
 import UsersViewContainer from '../Users/UsersViewContainer';
+import AvailableLicensesContainer from '../Licenses/AvailableLicensesContainer';
+import BuyLicenseContainer from '../Licenses/BuyLicenseContainer';
 
 class Full extends Component {
     render() {
@@ -98,6 +100,16 @@ class Full extends Component {
                         <NotificationsBox />
                         <div className="container-fluid">
                             <Switch>
+
+                                <Route path="/account/licenses/:typeId/institution/:institutionId/buy" name="Buy license" component={BuyLicenseContainer}/>
+                                <Route path="/account/licenses/:typeId/institution/:institutionId/contest/:contestId/buy" name="Buy license" component={BuyLicenseContainer}/>
+
+                                <Route path="/account/licenses/:typeId/buy" name="Buy license" component={BuyLicenseContainer}/>
+                                <Route path="/account/licenses/:typeId/contest/:contest/buy" name="Buy license" component={BuyLicenseContainer}/>
+
+                                <Route path="/account/licenses/buy" name="Buy license" component={AvailableLicensesContainer}/>
+                             
+
                                 <Route path="/dashboard" name="Dashboard" component={DashboardContainer} />
                                 <Route path="/components/buttons" name="Buttons" component={Buttons} />
                                 <Route path="/components/cards" name="Cards" component={Cards} />
@@ -325,6 +337,7 @@ class Full extends Component {
                                     name="Edit contest"
                                     component={ContestEditContainer}
                                 />
+                                
                                 <Route path="/contests/:id" name="Contest view" component={ContestViewContainer} />
                                 <Route path="/contests/" name="Contests" component={ContestsContainer} />
                                 <Route path="/fights/:id" name="Fights overview" component={FightContainer} />

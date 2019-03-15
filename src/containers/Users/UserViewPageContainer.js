@@ -14,6 +14,10 @@ class UserViewPageContainer extends Component {
         this.props.history.push(this.props.match.url + '/edit');
     }
 
+    handleBuyLicenseClick() {
+        this.props.history.push('/account/licenses/buy');
+    }
+
     handleRolesClick() {
         this.props.history.push(this.props.match.url + '/roles');
     }
@@ -40,7 +44,8 @@ class UserViewPageContainer extends Component {
         const actions = {
             handleEditClick: this.handleEditClick.bind(this),
             handleRolesClick: this.handleRolesClick.bind(this),
-            handlePrintClick: this.handlePrintClick.bind(this)
+            handlePrintClick: this.handlePrintClick.bind(this),
+            handleBuyLicenseClick: this.handleBuyLicenseClick.bind(this)
         };
 
         return <UserDetailsPage user={user} {...actions} />;

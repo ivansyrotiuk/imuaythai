@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
-import * as requestStatuses from '../../common/reguestStatuses';
-import PendingStatus from '../Statuses/PendingStatus';
-import AcceptedStatus from '../Statuses/AcceptedStatus';
-import RejectedStatus from '../Statuses/RejectedStatus';
-import Right from '../Common/Right';
-import Icon from '../Common/Icon';
+import React from "react";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+import * as requestStatuses from "../../common/reguestStatuses";
+import PendingStatus from "../Statuses/PendingStatus";
+import AcceptedStatus from "../Statuses/AcceptedStatus";
+import RejectedStatus from "../Statuses/RejectedStatus";
+import Right from "../Common/Right";
+import Icon from "../Common/Icon";
 
 const UserRolesTable = props => {
     const RequestAgain = (role, userRoles) => {
@@ -26,20 +26,20 @@ const UserRolesTable = props => {
             data={props.userRoles}
             columns={[
                 {
-                    Header: 'Role',
-                    accessor: 'roleName'
+                    Header: "Role",
+                    accessor: "roleName"
                 },
                 {
-                    Header: 'Acceptation date',
-                    accessor: 'acceptationDate'
+                    Header: "Acceptation date",
+                    accessor: "acceptationDate"
                 },
                 {
-                    Header: 'Accepted by',
-                    accessor: 'acceptedByUserName'
+                    Header: "Accepted by",
+                    accessor: "acceptedByUserName"
                 },
                 {
-                    Header: 'Status',
-                    id: 'status',
+                    Header: "Status",
+                    id: "status",
                     accessor: role => role,
                     maxWidth: 100,
                     Cell: row => (
@@ -47,8 +47,7 @@ const UserRolesTable = props => {
                             {row.value.status === requestStatuses.Pending && <PendingStatus />}
                             {row.value.status === requestStatuses.Accepted && <AcceptedStatus />}
                             {row.value.status === requestStatuses.Rejected && <RejectedStatus />}
-                            {row.value.status === requestStatuses.Rejected &&
-                                RequestAgain(row.value, this.props.userRoles)}
+                            {row.value.status === requestStatuses.Rejected && RequestAgain(row.value, props.userRoles)}
                         </div>
                     )
                 }

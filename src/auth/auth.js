@@ -1,15 +1,15 @@
-import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
-import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
-import connectedAuthWrapper from 'redux-auth-wrapper/connectedAuthWrapper';
-import authWrapper from 'redux-auth-wrapper/authWrapper';
-import Spinner from '../views/Components/Spinners/Spinner';
+import locationHelperBuilder from "redux-auth-wrapper/history4/locationHelper";
+import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect";
+import connectedAuthWrapper from "redux-auth-wrapper/connectedAuthWrapper";
+import authWrapper from "redux-auth-wrapper/authWrapper";
+import Spinner from "../views/Components/Spinners/Spinner";
 
 const locationHelper = locationHelperBuilder({});
 
 const userIsAuthenticatedDefaults = {
     authenticatedSelector: state => state.Account.authToken.length != 0,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIsAuthenticated'
+    wrapperDisplayName: "UserIsAuthenticated"
 };
 
 export const userIsAuthenticated = connectedAuthWrapper(userIsAuthenticatedDefaults);
@@ -17,43 +17,43 @@ export const userIsAuthenticated = connectedAuthWrapper(userIsAuthenticatedDefau
 export const userIsAuthenticatedRedir = connectedRouterRedirect({
     ...userIsAuthenticatedDefaults,
     AuthenticatingComponent: Spinner,
-    redirectPath: '/login'
+    redirectPath: "/login"
 });
 
 export const userIsAdminRedir = connectedRouterRedirect({
-    redirectPath: '/',
+    redirectPath: "/",
     allowRedirectBack: false,
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r === 'Admin'),
-    wrapperDisplayName: 'UserIsAdmin'
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r === "Admin"),
+    wrapperDisplayName: "UserIsAdmin"
 });
 
 export const userIsFighterRedir = connectedRouterRedirect({
-    redirectPath: '/',
+    redirectPath: "/",
     allowRedirectBack: false,
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r === 'Admin' || r === 'Fighter'),
-    wrapperDisplayName: 'UserIsAdmin'
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r === "Admin" || r === "Fighter"),
+    wrapperDisplayName: "UserIsAdmin"
 });
 
 const userIsNotAuthenticatedDefaults = {
     authenticatedSelector: state => state.Account.authToken.length != 0 && state.Account.fetching === false,
-    wrapperDisplayName: 'UserIsNotAuthenticated'
+    wrapperDisplayName: "UserIsNotAuthenticated"
 };
 
 export const userIsNotAuthenticated = connectedAuthWrapper(userIsNotAuthenticatedDefaults);
 
 export const userIsNotAuthenticatedRedir = connectedRouterRedirect({
     ...userIsNotAuthenticatedDefaults,
-    redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || '/login',
+    redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || "/login",
     allowRedirectBack: false
 });
 
 const userIsAdminDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == 'Admin') != undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == "Admin") != undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIsAdmin'
+    wrapperDisplayName: "UserIsAdmin"
 };
 
 export const userIsAdmin = connectedAuthWrapper(userIsAdminDefaults);
@@ -61,8 +61,8 @@ export const userIsAdmin = connectedAuthWrapper(userIsAdminDefaults);
 const userCanManageRolesDefaults = {
     authenticatedSelector: state =>
         state.Account.authToken.length != 0 &&
-        state.Account.user.roles.find(r => r == 'Admin' || r == 'InstitutionAdmin') != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+        state.Account.user.roles.find(r => r == "Admin" || r == "InstitutionAdmin") != undefined,
+    wrapperDisplayName: "userCanManageRoles"
 };
 
 export const userCanManageRoles = connectedAuthWrapper(userCanManageRolesDefaults);
@@ -73,36 +73,57 @@ export const userCanAcceptContestRequest = connectedAuthWrapper({
         state.Account.user.InstitutionId == state.Contest.singleContest.institutionId &&
         state.Account.user.roles.find(
             r =>
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
+});
+
+export const userCanEditOtherUsers = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        !!state.Account.user.roles.find(r => r == "Admin") ||
+        (!!state.Account.user.roles.find(r => r == "GymAdmin") &&
+            state.Account.user.InstitutionId == state.SingleUser.user.institutionId) ||
+        state.Account.user.UserId == state.SingleUser.user.id
+});
+
+export const userCanEditThisInstitution = connectedAuthWrapper({
+    authenticatedSelector: state =>
+        !!state.Account.user.roles.find(
+            r =>
+                (r == r) == "Admin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
+        ) ||
+        (!!state.Account.user.roles.find(r => r == "GymAdmin") &&
+            state.Account.user.InstitutionId == state.SingleInstitution.institution.id)
 });
 
 export const userCanAddContestRequest = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const UserCanCreateUsers = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.some(
             role =>
-                role === 'Admin' ||
-                role === 'NationalFederation' ||
-                role === 'ContinentalFederation' ||
-                role === 'WorldFederation'
+                role === "Admin" ||
+                role === "NationalFederation" ||
+                role === "ContinentalFederation" ||
+                role === "WorldFederation"
         )
 });
 
@@ -110,149 +131,149 @@ export const userCanSeeContests = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Fighter' ||
-                r == 'Guest' ||
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Fighter" ||
+                r == "Guest" ||
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined || !state.Account.user.InstitutionId,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const userCanSeeInstitutions = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Fighter' ||
-                r == 'Guest' ||
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Fighter" ||
+                r == "Guest" ||
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const userCanEditInstitutions = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const userCanDeleteInstitutions = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const userCanSeeUsers = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Fighter' ||
-                r == 'Guest' ||
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Fighter" ||
+                r == "Guest" ||
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const userCanEditUsers = connectedAuthWrapper({
     authenticatedSelector: state =>
         state.Account.user.roles.find(
             r =>
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
         ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 export const userCanDeleteUsers = connectedAuthWrapper({
     authenticatedSelector: state =>
-        state.Account.user.roles.find(
+        !!state.Account.user.roles.find(
             r =>
-                r == 'Admin' ||
-                r == 'GymAdmin' ||
-                r == 'NationalFederation' ||
-                r == 'ContinentalFederation' ||
-                r == 'WorldFederation'
-        ) != undefined,
-    wrapperDisplayName: 'userCanManageRoles'
+                r == "Admin" ||
+                r == "GymAdmin" ||
+                r == "NationalFederation" ||
+                r == "ContinentalFederation" ||
+                r == "WorldFederation"
+        ),
+    wrapperDisplayName: "userCanManageRoles"
 });
 
 const userIsFighterDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == 'Fighter') != undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == "Fighter") != undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIsFighter'
+    wrapperDisplayName: "UserIsFighter"
 };
 
 export const userIsFighter = connectedAuthWrapper(userIsFighterDefaults);
 
 const userIsJudgeDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == 'Judge') != undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == "Judge") != undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIsJudge'
+    wrapperDisplayName: "UserIsJudge"
 };
 
 export const userIsJudge = connectedAuthWrapper(userIsJudgeDefaults);
 
 const userIsDoctorDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == 'Doctor') != undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r == "Doctor") != undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIsDoctor'
+    wrapperDisplayName: "UserIsDoctor"
 };
 
 export const userIsDoctor = connectedAuthWrapper(userIsDoctorDefaults);
 
 const userIsNormalUserDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r != 'Admin' && r != '') != undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r != "Admin" && r != "") != undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIsNormalUser'
+    wrapperDisplayName: "UserIsNormalUser"
 };
 
 export const userIsNormalUser = connectedAuthWrapper(userIsNormalUserDefaults);
 
 const userHasRoleDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r != '') != undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r != "") != undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIHasRole'
+    wrapperDisplayName: "UserIHasRole"
 };
 
 export const userHasRole = connectedAuthWrapper(userHasRoleDefaults);
 
 const userWithoutRolesDefaults = {
     authenticatedSelector: state =>
-        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r != '') !== undefined,
+        state.Account.authToken.length != 0 && state.Account.user.roles.find(r => r != "") !== undefined,
     authenticatingSelector: state => state.Account.fetching,
-    wrapperDisplayName: 'UserIWithoutRole'
+    wrapperDisplayName: "UserIWithoutRole"
 };
 
 export const userWithoutRole = connectedAuthWrapper(userWithoutRolesDefaults);
@@ -260,5 +281,5 @@ export const userWithoutRole = connectedAuthWrapper(userWithoutRolesDefaults);
 export const userWithoutRoleRedir = connectedRouterRedirect({
     ...userWithoutRolesDefaults,
     AuthenticatingComponent: Spinner,
-    redirectPath: '/register/second_step'
+    redirectPath: "/register/second_step"
 });
